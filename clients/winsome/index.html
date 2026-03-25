@@ -1,0 +1,1660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join BTT — via Winsome | Building Transformation Team</title>
+  <meta name="description" content="Winsome personally invited you to explore this business opportunity. BTT helps families get protected, debt-free, and growing. No sales experience needed — we field-train you all the way." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── RESET & BASE ─────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* Neutral dark palette — pending brand kit from logo review */
+      --bg-primary:    #0c1024;
+      --bg-secondary:  #111428;
+      --bg-card:       #161b35;
+      --bg-card-hover: #1c2240;
+      --gold:          #d4a853;
+      --gold-light:    #e8c47a;
+      --gold-dim:      rgba(212,168,83,0.2);
+      --text-primary:  #eef0f8;
+      --text-secondary:#9aa3c2;
+      --text-muted:    #5d6585;
+      --border:        rgba(255,255,255,0.07);
+      --border-gold:   rgba(212,168,83,0.28);
+      --success:       #10b981;
+      --error:         #ef4444;
+      --white:         #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      opacity: 0;
+      animation: pageLoad 0.5s ease 0.08s forwards;
+    }
+
+    @keyframes pageLoad {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── SCROLL ANIMATIONS ────────────────────────────────────────────── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .fade-delay-1 { transition-delay: 0.1s; }
+    .fade-delay-2 { transition-delay: 0.2s; }
+    .fade-delay-3 { transition-delay: 0.3s; }
+    .fade-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── UTILITY ──────────────────────────────────────────────────────── */
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 96px 0; }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: var(--gold-dim);
+      border: 1px solid var(--border-gold);
+      border-radius: 100px;
+      padding: 5px 14px;
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.7rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+
+    .section-title .gold { color: var(--gold); }
+
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 580px;
+      line-height: 1.78;
+    }
+
+    /* ─── TOP NAV ──────────────────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      padding: 14px 28px;
+      background: rgba(12, 16, 36, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: box-shadow 0.3s;
+    }
+
+    .nav.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.4); }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo-img {
+      height: 36px;
+      width: auto;
+    }
+
+    /* Placeholder badge — swap out when logo is ready */
+    .nav-logo-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--gold), #b88a3a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      font-weight: 900;
+      color: #0c1024;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-logo-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+
+    .nav-logo-sub {
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      display: block;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-socials {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .nav-social-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.82rem;
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-social-link:hover { color: var(--gold); }
+
+    @media (max-width: 600px) {
+      .nav-socials { display: none; }
+    }
+
+    .btn-nav {
+      padding: 9px 20px;
+      background: var(--gold);
+      color: #0c1024;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-nav:hover {
+      background: var(--gold-light);
+      transform: translateY(-1px);
+    }
+
+    /* ─── HERO ──────────────────────────────────────────────────────────── */
+    .hero {
+      padding: 148px 0 96px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -100px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(212,168,83,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: -80px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(22,27,53,0.7) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5.5vw, 4.4rem);
+      font-weight: 900;
+      color: var(--text-primary);
+      line-height: 1.07;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 .gold { color: var(--gold); }
+
+    .hero-desc {
+      font-size: 1.12rem;
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+      max-width: 580px;
+      line-height: 1.8;
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 56px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 15px 32px;
+      background: var(--gold);
+      color: #0c1024;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+      box-shadow: 0 4px 20px rgba(212,168,83,0.3);
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(212,168,83,0.45);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border: 1.5px solid rgba(255,255,255,0.18);
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      font-weight: 500;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--gold);
+      background: rgba(212,168,83,0.06);
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      padding-top: 48px;
+      border-top: 1px solid var(--border);
+    }
+
+    .hero-stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1;
+    }
+
+    .hero-stat-number .gold { color: var(--gold); }
+
+    .hero-stat-label {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      margin-top: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+    }
+
+    /* ─── VIDEO SECTION ─────────────────────────────────────────────────── */
+    .video-section {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 80px 0;
+    }
+
+    .video-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    @media (max-width: 860px) {
+      .video-inner { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    .video-copy .section-subtitle { margin-bottom: 28px; }
+
+    .video-pull {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      font-style: italic;
+      color: var(--gold-light);
+      line-height: 1.5;
+      padding-left: 20px;
+      border-left: 3px solid var(--gold);
+      margin-top: 24px;
+    }
+
+    .video-player {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .video-player:hover {
+      border-color: var(--border-gold);
+      box-shadow: 0 8px 40px rgba(212,168,83,0.15);
+    }
+
+    .video-thumbnail {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .video-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(to top, rgba(12,16,36,0.85) 0%, rgba(12,16,36,0.3) 60%, transparent 100%);
+    }
+
+    .video-play-btn {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 12px rgba(212,168,83,0.15), 0 8px 28px rgba(212,168,83,0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-bottom: 14px;
+    }
+
+    .video-player:hover .video-play-btn {
+      transform: scale(1.07);
+      box-shadow: 0 0 0 18px rgba(212,168,83,0.12), 0 12px 36px rgba(212,168,83,0.5);
+    }
+
+    .video-play-icon {
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 12px 0 12px 22px;
+      border-color: transparent transparent transparent #0c1024;
+      margin-left: 4px;
+    }
+
+    .video-caption {
+      font-size: 0.85rem;
+      color: rgba(238,240,248,0.7);
+      letter-spacing: 0.04em;
+    }
+
+    .video-placeholder-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      text-align: center;
+    }
+
+    .video-placeholder-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .video-placeholder-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+
+    .video-placeholder-sub {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+    }
+
+    /* ─── WHAT BTT IS ────────────────────────────────────────────────────── */
+    .pillars-section { background: var(--bg-primary); }
+    .pillars-header { text-align: center; margin-bottom: 64px; }
+    .pillars-header .section-subtitle { margin: 0 auto; }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 760px) { .pillars-grid { grid-template-columns: 1fr; } }
+
+    .pillar-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px 30px;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pillar-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .pillar-card:hover {
+      border-color: var(--border-gold);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+
+    .pillar-card:hover::after { opacity: 1; }
+
+    .pillar-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 900;
+      color: rgba(212,168,83,0.12);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .pillar-icon { font-size: 2rem; margin-bottom: 16px; display: block; }
+
+    .pillar-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+
+    .pillar-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.78;
+    }
+
+    /* ─── HOW IT WORKS ──────────────────────────────────────────────────── */
+    .how-section { background: var(--bg-secondary); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .how-header { text-align: center; margin-bottom: 68px; }
+    .how-header .section-subtitle { margin: 0 auto; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      position: relative;
+    }
+
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 32px;
+      left: calc(12.5% + 20px);
+      right: calc(12.5% + 20px);
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold), rgba(212,168,83,0.2));
+      opacity: 0.3;
+      z-index: 0;
+    }
+
+    @media (max-width: 768px) {
+      .steps { grid-template-columns: 1fr 1fr; }
+      .steps::before { display: none; }
+    }
+
+    @media (max-width: 480px) { .steps { grid-template-columns: 1fr; } }
+
+    .step { position: relative; z-index: 1; }
+
+    .step-number {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 2px solid var(--border-gold);
+      color: var(--gold);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+    }
+
+    .step-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+
+    .step-desc {
+      font-size: 0.87rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+    }
+
+    /* ─── WHO THIS IS FOR ────────────────────────────────────────────────── */
+    .who-section { background: var(--bg-primary); }
+    .who-header { text-align: center; margin-bottom: 60px; }
+    .who-header .section-subtitle { margin: 0 auto; }
+
+    .who-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 640px) { .who-grid { grid-template-columns: 1fr; } }
+
+    .who-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px 26px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      transition: border-color 0.2s;
+    }
+
+    .who-card:hover { border-color: var(--border-gold); }
+
+    .who-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .who-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .who-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* ─── TRUST STRIP ──────────────────────────────────────────────────── */
+    .trust-strip {
+      padding: 32px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-secondary);
+    }
+
+    .trust-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 32px;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .trust-item .dot { color: var(--gold); font-size: 0.9rem; }
+
+    /* ─── FORM SECTION ──────────────────────────────────────────────────── */
+    .form-section { background: var(--bg-primary); }
+
+    .form-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    @media (max-width: 880px) {
+      .form-wrapper { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+    /* Sidebar */
+    .form-sidebar {}
+    .form-sidebar .section-subtitle { margin-bottom: 36px; }
+
+    .sidebar-items { display: flex; flex-direction: column; gap: 20px; }
+
+    .sidebar-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .sidebar-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      flex-shrink: 0;
+    }
+
+    .sidebar-text { display: flex; flex-direction: column; gap: 3px; padding-top: 5px; }
+
+    .sidebar-text strong {
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      font-weight: 700;
+    }
+
+    .sidebar-text span {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    .form-contact-box {
+      margin-top: 36px;
+      padding: 18px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .form-contact-box p {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      margin-bottom: 7px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .form-contact-box p:last-child { margin-bottom: 0; }
+
+    .form-contact-box a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    /* Form Card */
+    .form-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px 36px;
+    }
+
+    @media (max-width: 480px) { .form-card { padding: 28px 20px; } }
+
+    .form-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.45rem;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .form-card-sub {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    @media (max-width: 520px) { .form-row { grid-template-columns: 1fr; } }
+
+    .form-group { margin-bottom: 18px; }
+
+    .form-group label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      margin-bottom: 7px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .req { color: var(--gold); }
+
+    .form-control {
+      width: 100%;
+      padding: 11px 14px;
+      background: var(--bg-secondary);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.92rem;
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      appearance: none;
+    }
+
+    .form-control::placeholder { color: var(--text-muted); }
+
+    .form-control:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(212,168,83,0.12);
+      background: var(--bg-card);
+    }
+
+    .form-control.error {
+      border-color: var(--error);
+      box-shadow: 0 0 0 3px rgba(239,68,68,0.1);
+    }
+
+    textarea.form-control { min-height: 85px; resize: vertical; }
+
+    .field-error {
+      font-size: 0.75rem;
+      color: var(--error);
+      margin-top: 5px;
+      display: none;
+    }
+
+    .field-error.visible { display: block; }
+
+    /* SMS Consent */
+    .sms-consent-box {
+      background: rgba(255,255,255,0.03);
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-bottom: 20px;
+    }
+
+    .sms-consent-box-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .checkbox-group { display: flex; gap: 10px; align-items: flex-start; }
+
+    .checkbox-group input[type="checkbox"] {
+      margin-top: 3px;
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      accent-color: var(--gold);
+      cursor: pointer;
+    }
+
+    .checkbox-group label {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+      line-height: 1.65;
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .sms-fine-print {
+      font-size: 0.73rem;
+      color: var(--text-muted);
+      margin-top: 10px;
+      line-height: 1.6;
+    }
+
+    .sms-fine-print a { color: var(--gold); text-decoration: none; }
+
+    .btn-submit {
+      width: 100%;
+      padding: 15px 24px;
+      background: var(--gold);
+      color: #0c1024;
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+      font-family: 'Inter', sans-serif;
+      box-shadow: 0 4px 20px rgba(212,168,83,0.25);
+    }
+
+    .btn-submit:hover:not(:disabled) {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(212,168,83,0.4);
+    }
+
+    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .form-note {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 12px;
+    }
+
+    /* Success state */
+    .success-msg {
+      display: none;
+      background: rgba(16,185,129,0.08);
+      border: 1.5px solid rgba(16,185,129,0.3);
+      border-radius: 12px;
+      padding: 28px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .success-msg.visible { display: block; }
+    .success-msg-icon { font-size: 2.5rem; display: block; margin-bottom: 12px; }
+    .success-msg h3 { font-size: 1.1rem; color: var(--success); margin-bottom: 8px; }
+    .success-msg p { font-size: 0.88rem; color: var(--text-secondary); }
+
+    /* ─── FOOTER ────────────────────────────────────────────────────────── */
+    .footer {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      padding: 56px 0 36px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 32px;
+    }
+
+    @media (max-width: 768px) { .footer-top { grid-template-columns: 1fr; gap: 32px; } }
+
+    .footer-brand-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+
+    .footer-tagline {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 280px;
+      margin-bottom: 22px;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .footer-social {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+
+    .footer-social:hover {
+      border-color: var(--border-gold);
+      color: var(--gold);
+      background: var(--gold-dim);
+    }
+
+    .footer-col-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+    .footer-links a, .footer-links span {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    .footer-links a:hover { color: var(--text-primary); }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-copy {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
+
+    .footer-legal { display: flex; gap: 20px; }
+
+    .footer-legal a {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-legal a:hover { color: var(--text-primary); }
+
+    /* ─── PRIVACY ───────────────────────────────────────────────────────── */
+    .privacy-section {
+      padding: 64px 0 80px;
+      border-top: 1px solid var(--border);
+      background: var(--bg-primary);
+    }
+
+    .privacy-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px 40px;
+      max-width: 780px;
+    }
+
+    .privacy-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .privacy-box p {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+
+    .privacy-box p:last-child { margin-bottom: 0; }
+
+    @media (max-width: 768px) { .section { padding: 72px 0; } }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ────────────────────────────────────────────────────────────── -->
+  <nav class="nav" id="mainNav">
+    <a href="https://joinbtt.com" class="nav-logo">
+      <!-- Swap in real logo: <img src="btt-logo.svg" class="nav-logo-img" alt="BTT" /> -->
+      <div class="nav-logo-badge">BTT</div>
+      <div>
+        <span class="nav-logo-name">Building Transformation Team</span>
+        <span class="nav-logo-sub">JoinBTT.com</span>
+      </div>
+    </a>
+    <div class="nav-right">
+      <div class="nav-socials">
+        <!-- Update href with real social URLs -->
+        <a href="#" class="nav-social-link" title="Facebook" aria-label="Facebook">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="#" class="nav-social-link" title="Instagram" aria-label="Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="#" class="nav-social-link" title="YouTube" aria-label="YouTube">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+        </a>
+      </div>
+      <a href="#apply" class="btn-nav">Claim Your Spot →</a>
+    </div>
+  </nav>
+
+  <!-- ─── HERO ─────────────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-eyebrow fade-in">Winsome Invited You — Limited Spots Available · Life Insurance Business Opportunity</div>
+        <h1 class="fade-in fade-delay-1">
+          Build Something Real.<br />
+          Help Families.<br />
+          Own <span class="gold">Your Future.</span>
+        </h1>
+        <p class="hero-desc fade-in fade-delay-2">
+          Winsome is part of Building Transformation Team — and they personally sent you here. BTT is not a job. It's a business opportunity backed by a proven system, an AI-powered platform, and a team that field-trains you all the way until you're ready to move on your own. Start part-time. Grow at your pace.
+        </p>
+        <p class="hero-desc fade-in fade-delay-2" style="font-size:0.9rem;color:var(--gold);margin-top:-8px;">
+          We only bring on a select number of new business partners each month. Spots fill at each BOM.
+        </p>
+        <div class="hero-cta fade-in fade-delay-3">
+          <a href="#apply" class="btn-primary">Claim Your Spot →</a>
+          <a href="#how-it-works" class="btn-secondary">See How It Works</a>
+        </div>
+        <div class="hero-stats fade-in fade-delay-4">
+          <div class="hero-stat">
+            <div class="hero-stat-number"><span class="gold">100</span>%</div>
+            <div class="hero-stat-label">Commission Based</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number"><span class="gold">$0</span></div>
+            <div class="hero-stat-label">Income Ceiling</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number">Part<span class="gold">-</span>Time</div>
+            <div class="hero-stat-label">Friendly — Your Pace</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number"><span class="gold">2</span>×</div>
+            <div class="hero-stat-label">BOM Weekly — Tue &amp; Sat</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── VIDEO SECTION ────────────────────────────────────────────────── -->
+  <section class="video-section" id="video">
+    <div class="container">
+      <div class="video-inner">
+
+        <div class="video-copy fade-in">
+          <div class="section-label">From Winsome</div>
+          <h2 class="section-title">Watch Winsome's <span class="gold">personal message.</span></h2>
+          <p class="section-subtitle">
+            Winsome shares why they joined BTT, how the opportunity changed things for their family, and why they're inviting people they trust to look at this seriously.
+          </p>
+          <div class="video-pull">
+            "I wouldn't have sent you here if I didn't believe in it. Watch this — it'll make sense in 60 seconds."
+          </div>
+        </div>
+
+        <!-- Video placeholder — replace with Winsome's personal video embed (iframe or video tag) -->
+        <div class="video-player fade-in fade-delay-2">
+          <div class="video-placeholder-text">
+            <div class="video-placeholder-label">Coming Soon</div>
+            <div class="video-placeholder-title">Winsome's Personal Video</div>
+            <div class="video-placeholder-sub">Replace this block with Winsome's &lt;iframe&gt; or &lt;video&gt; embed<br />when the recording is ready. See README.md for instructions.</div>
+          </div>
+          <div class="video-overlay">
+            <div class="video-play-btn">
+              <div class="video-play-icon"></div>
+            </div>
+            <div class="video-caption">Watch 60-second overview</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── WHAT BTT IS ──────────────────────────────────────────────────── -->
+  <section class="section pillars-section" id="about">
+    <div class="container">
+      <div class="pillars-header fade-in">
+        <div class="section-label">What BTT Is</div>
+        <h2 class="section-title">Three things. One <span class="gold">powerful system.</span></h2>
+        <p class="section-subtitle">
+          BTT was built around three outcomes — for your clients, for your family, and for your future. Everything we do runs through these three pillars.
+        </p>
+      </div>
+      <div class="pillars-grid">
+        <div class="pillar-card fade-in fade-delay-1">
+          <div class="pillar-num">01</div>
+          <span class="pillar-icon">🛡️</span>
+          <div class="pillar-title">Protection</div>
+          <p class="pillar-desc">
+            You help families get protected. Life insurance provides financial security that most families desperately need and often don't know how to access. You become the person who makes that happen.
+          </p>
+        </div>
+        <div class="pillar-card fade-in fade-delay-2">
+          <div class="pillar-num">02</div>
+          <span class="pillar-icon">💳</span>
+          <div class="pillar-title">Debt Freedom</div>
+          <p class="pillar-desc">
+            Many of the families you work with are looking for a way out of debt. The products and strategies you'll learn to present give them a real path — and you earn while helping them get there.
+          </p>
+        </div>
+        <div class="pillar-card fade-in fade-delay-3">
+          <div class="pillar-num">03</div>
+          <span class="pillar-icon">📈</span>
+          <div class="pillar-title">Income Growth</div>
+          <p class="pillar-desc">
+            Whether someone wants extra income or wants to build their own agency, BTT gives them a vehicle. And when you recruit others into this system, you earn on their production too — real residual income.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── HOW IT WORKS ──────────────────────────────────────────────────── -->
+  <section class="section how-section" id="how-it-works">
+    <div class="container">
+      <div class="how-header fade-in">
+        <div class="section-label">The Process</div>
+        <h2 class="section-title">Four steps from <span class="gold">applying to earning.</span></h2>
+        <p class="section-subtitle">No guesswork. Clear path. Here's exactly what happens once you reach out.</p>
+      </div>
+      <div class="steps">
+        <div class="step fade-in fade-delay-1">
+          <div class="step-number">1</div>
+          <div class="step-title">Apply &amp; Attend a BOM</div>
+          <p class="step-desc">
+            Fill out the form and a Marketing Director contacts you within 24 hours. If there's a fit, you'll receive a personal invite to our next Business Opportunity Meeting (BOM) — held every <strong>Tuesday at 7PM</strong> and <strong>Saturday at 10AM</strong> at our Pompano Beach office. This is a one-time invite. Come see what we do, ask every question you have, and decide if this is right for you. We don't pressure anyone twice.
+          </p>
+        </div>
+        <div class="step fade-in fade-delay-2">
+          <div class="step-number">2</div>
+          <div class="step-title">Get Licensed &amp; Appointed</div>
+          <p class="step-desc">
+            We guide you through your state life insurance license (1–2 weeks, fast track) and then your carrier appointment. Your team is with you every step — we've done this with dozens of new agents.
+          </p>
+        </div>
+        <div class="step fade-in fade-delay-3">
+          <div class="step-number">3</div>
+          <div class="step-title">Field Training — We Go With You</div>
+          <p class="step-desc">
+            This is where BTT is different. We don't hand you a packet and say "good luck." We field-train you — sitting alongside you in appointments, helping you present, handling objections — until you're ready to run independently.
+          </p>
+        </div>
+        <div class="step fade-in fade-delay-4">
+          <div class="step-number">4</div>
+          <div class="step-title">Build Your Business</div>
+          <p class="step-desc">
+            Once you're moving, you can grow solo or build a team. Either way, the AI system handles follow-ups and your pipeline stays warm. Part-time agents let their team work leads while they're learning — and still earn.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── WHO THIS IS FOR ───────────────────────────────────────────────── -->
+  <section class="section who-section" id="who">
+    <div class="container">
+      <div class="who-header fade-in">
+        <div class="section-label">Who This Is For</div>
+        <h2 class="section-title">You don't need a <span class="gold">sales background.</span></h2>
+        <p class="section-subtitle">
+          BTT works for people across every stage of life. Here's who thrives in this system — and why.
+        </p>
+      </div>
+      <div class="who-grid">
+        <div class="who-card fade-in fade-delay-1">
+          <div class="who-icon">⏱️</div>
+          <div>
+            <div class="who-title">Working a Job Right Now?</div>
+            <p class="who-desc">Start part-time. Our AI system keeps your leads warm between your working hours. Your team covers appointments until you're ready to step in yourself. Many BTT agents built this alongside a full-time job.</p>
+          </div>
+        </div>
+        <div class="who-card fade-in fade-delay-2">
+          <div class="who-icon">🤝</div>
+          <div>
+            <div class="who-title">You Don't Like "Selling"?</div>
+            <p class="who-desc">Good — because this isn't really selling. You're having conversations about things families already need. The system does the follow-up. Your team handles the close until you're confident. You just need to care about people.</p>
+          </div>
+        </div>
+        <div class="who-card fade-in fade-delay-3">
+          <div class="who-icon">🚀</div>
+          <div>
+            <div class="who-title">Ready to Go All In?</div>
+            <p class="who-desc">If you want to build fast, BTT gives you everything you need to run. The system, the training, the team, and the tools are all in place. The ceiling is yours to set.</p>
+          </div>
+        </div>
+        <div class="who-card fade-in fade-delay-4">
+          <div class="who-icon">🌱</div>
+          <div>
+            <div class="who-title">Completely New to This Industry?</div>
+            <p class="who-desc">Zero experience is perfectly fine. We've built agents from scratch through field training and the BOM system. You bring the willingness — we bring the path. That's the BTT model.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TRUST STRIP ───────────────────────────────────────────────────── -->
+  <div class="trust-strip">
+    <div class="container">
+      <div class="trust-inner">
+        <div class="trust-item"><span class="dot">◆</span> Proven System — Carrier Approved</div>
+        <div class="trust-item"><span class="dot">◆</span> AI-Driven Follow-Up</div>
+        <div class="trust-item"><span class="dot">◆</span> Part-Time or Full-Time</div>
+        <div class="trust-item"><span class="dot">◆</span> Field Training Included</div>
+        <div class="trust-item"><span class="dot">◆</span> No Income Cap</div>
+        <div class="trust-item"><span class="dot">◆</span> BOM Every Tue &amp; Sat</div>
+        <div class="trust-item"><span class="dot">◆</span> Limited Intake — Reserve Your Spot</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── APPLICATION FORM ──────────────────────────────────────────────── -->
+  <section class="section form-section" id="apply">
+    <div class="container">
+      <div class="form-wrapper">
+
+        <!-- Sidebar -->
+        <div class="form-sidebar fade-in">
+          <div class="section-label">Reserve Your Spot</div>
+          <h2 class="section-title">Your spot at the next <span class="gold">BOM is waiting.</span></h2>
+          <p class="section-subtitle">
+            A Marketing Director reviews every application personally. If there's a fit, you'll get a direct invite to our next Tuesday or Saturday BOM. Spots are limited — we can only train so many new partners per cycle.
+          </p>
+
+          <div class="sidebar-items">
+            <div class="sidebar-item">
+              <div class="sidebar-icon">⚡</div>
+              <div class="sidebar-text">
+                <strong>24-Hour Response</strong>
+                <span>A Marketing Director reaches out personally — not a bot</span>
+              </div>
+            </div>
+            <div class="sidebar-item">
+              <div class="sidebar-icon">🎓</div>
+              <div class="sidebar-text">
+                <strong>No Experience Needed</strong>
+                <span>We field-train you until you're ready to move independently</span>
+              </div>
+            </div>
+            <div class="sidebar-item">
+              <div class="sidebar-icon">🤖</div>
+              <div class="sidebar-text">
+                <strong>AI System Works for You</strong>
+                <span>Follow-ups, lead scoring, and pipeline management — automated</span>
+              </div>
+            </div>
+            <div class="sidebar-item">
+              <div class="sidebar-icon">🔒</div>
+              <div class="sidebar-text">
+                <strong>Your Info Is Safe</strong>
+                <span>We never sell or share your data — ever</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-contact-box">
+            <p>📍 1280 SW 36th Ave, Suite 301, Pompano Beach, FL 33069</p>
+            <p>📞 <a href="tel:+19548000385">(954) 800-0385</a></p>
+            <p>✉️ <a href="mailto:info@buildingtransformationteam.com">info@buildingtransformationteam.com</a></p>
+            <p style="font-size:0.75rem;color:var(--text-muted);margin-top:4px;">Mon–Fri 9AM–6PM · Sat 9AM–12PM</p>
+          </div>
+        </div>
+
+        <!-- Form Card -->
+        <div class="form-card fade-in fade-delay-1">
+          <div class="form-card-title">Reserve Your Spot</div>
+          <div class="form-card-sub">Limited seats per BOM cycle. Takes 2 minutes to apply.</div>
+
+          <!-- Success State -->
+          <div class="success-msg" id="successMsg">
+            <span class="success-msg-icon">✅</span>
+            <h3>You're on the Reserve List!</h3>
+            <p>A Marketing Director will reach out within 24 hours with your personal BOM invite — <strong>Tuesday at 7PM</strong> or <strong>Saturday at 10AM</strong>.<br />Check your phone — spots are limited and we review personally.</p>
+          </div>
+
+          <!-- Form -->
+          <form id="applyForm" novalidate>
+            <!-- Hidden tracking fields — populated by UTM capture JS on page load -->
+            <input type="hidden" id="field_ref" name="ref_agent" value="Winsome" />
+            <input type="hidden" id="field_utm_source" name="utm_source" value="" />
+            <input type="hidden" id="field_utm_medium" name="utm_medium" value="" />
+            <input type="hidden" id="field_utm_campaign" name="utm_campaign" value="" />
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">First Name <span class="req">*</span></label>
+                <input type="text" id="firstName" name="firstName" class="form-control" placeholder="Jane" required />
+                <div class="field-error" id="err-firstName">Please enter your first name.</div>
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name <span class="req">*</span></label>
+                <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Doe" required />
+                <div class="field-error" id="err-lastName">Please enter your last name.</div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">Email Address <span class="req">*</span></label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="jane@example.com" required />
+                <div class="field-error" id="err-email">Please enter a valid email.</div>
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number <span class="req">*</span></label>
+                <input type="tel" id="phone" name="phone" class="form-control" placeholder="(555) 000-0000" required />
+                <div class="field-error" id="err-phone">Please enter your phone number.</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="licensed">License Status <span class="req">*</span></label>
+              <select id="licensed" name="licensed" class="form-control" required>
+                <option value="" disabled selected>Select your current status…</option>
+                <option value="yes-active">Licensed &amp; Active</option>
+                <option value="yes-expired">Licensed — Expired</option>
+                <option value="no">Not Yet Licensed</option>
+              </select>
+              <div class="field-error" id="err-licensed">Please select your license status.</div>
+            </div>
+
+            <div class="form-group">
+              <label for="availability">Availability</label>
+              <select id="availability" name="availability" class="form-control">
+                <option value="" disabled selected>Full-time, part-time, or exploring?</option>
+                <option value="fulltime">Full-time — ready to go all in</option>
+                <option value="parttime">Part-time — building alongside my current job</option>
+                <option value="exploring">Just exploring the opportunity</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="referral">How Did You Hear About Us?</label>
+              <input type="text" id="referral" name="referral" class="form-control" placeholder="e.g., a friend, social media, online search…" />
+            </div>
+
+            <div class="form-group">
+              <label for="message" style="text-transform:none;letter-spacing:0;font-size:0.78rem;">Tell Us About Yourself <span style="color:var(--text-muted);font-weight:400;">(optional)</span></label>
+              <textarea id="message" name="message" class="form-control" placeholder="Your goals, background, or what drew you to this opportunity…"></textarea>
+            </div>
+
+            <!-- SMS Consent (A2P Compliance) -->
+            <div class="sms-consent-box">
+              <div class="sms-consent-box-title">SMS &amp; Communication Consent</div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="smsConsent" name="smsConsent" required />
+                <label for="smsConsent">
+                  I agree to receive text messages from Building Transformation Team (BTT) regarding my
+                  application, onboarding, and business opportunity updates. Message frequency varies.
+                  Reply <strong>STOP</strong> to unsubscribe at any time. Msg &amp; data rates may apply.
+                </label>
+              </div>
+              <div class="field-error" id="err-smsConsent">You must agree to SMS communications to proceed.</div>
+              <p class="sms-fine-print">
+                By submitting, you consent to receive SMS from BTT. We respect your privacy and never sell your information.
+                <a href="#privacy">View Privacy Policy.</a>
+              </p>
+            </div>
+
+            <button type="submit" class="btn-submit" id="submitBtn">
+              Submit Application →
+            </button>
+            <p class="form-note">A Marketing Director will reach out within 24 hours.</p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ────────────────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand-name">Building Transformation Team</div>
+          <p class="footer-tagline">
+            A business opportunity in the life insurance industry. We help families get protected, debt-free, and growing — and we help you build the income to match.
+            <br /><br />
+            Powered by <strong style="color:rgba(238,240,248,0.6);">MeetZair</strong> — AI-driven agency operations.
+          </p>
+          <div class="footer-socials">
+            <!-- Update with real social URLs -->
+            <a href="#" class="footer-social" title="Facebook" aria-label="Facebook">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="#" class="footer-social" title="Instagram" aria-label="Instagram">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <a href="#" class="footer-social" title="YouTube" aria-label="YouTube">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Quick Links</div>
+          <ul class="footer-links">
+            <li><a href="#video">Watch Overview</a></li>
+            <li><a href="#about">What BTT Is</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#who">Who It's For</a></li>
+            <li><a href="#apply">Claim Your Spot</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <ul class="footer-links">
+            <li><span>📍 1280 SW 36th Ave, Suite 301<br />Pompano Beach, FL 33069</span></li>
+            <li><a href="tel:+19548000385">📞 (954) 800-0385</a></li>
+            <li><a href="mailto:info@buildingtransformationteam.com">✉️ info@buildingtransformationteam.com</a></li>
+            <li><a href="https://buildingtransformationteam.com" target="_blank" rel="noopener">🌐 buildingtransformationteam.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2026 Building Transformation Team · JoinBTT.com · All Rights Reserved</div>
+        <div class="footer-legal">
+          <a href="#privacy">Privacy Policy</a>
+          <a href="https://buildingtransformationteam.com" target="_blank" rel="noopener">Main Website</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ─── PRIVACY POLICY ────────────────────────────────────────────────── -->
+  <section class="privacy-section" id="privacy">
+    <div class="container">
+      <div class="privacy-box">
+        <h3>🔒 Privacy Policy</h3>
+        <p>
+          Building Transformation Team (BTT) is committed to protecting your personal information.
+          The data you submit through this form — name, email, phone, and any messages — is used solely
+          to evaluate your application and connect you with a BTT representative.
+        </p>
+        <p>
+          We will never sell, rent, or share your information with any third party for marketing purposes.
+          Your phone number is collected with your explicit consent for SMS communications related to your
+          application and onboarding. You may opt out at any time by replying <strong style="color:var(--text-secondary);">STOP</strong> to any text message you receive.
+        </p>
+        <p>
+          For questions, contact us at <a href="tel:+19548000385" style="color:var(--gold);">(954) 800-0385</a> or
+          <a href="mailto:info@buildingtransformationteam.com" style="color:var(--gold);">info@buildingtransformationteam.com</a>.
+          Standard message and data rates may apply to SMS communications.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SCRIPTS ─────────────────────────────────────────────────────────── -->
+  <script>
+    // UTM + ref capture — reads URL params on load, writes to hidden form fields
+    // Example: winsome.joinbtt.com?ref=Winsome&utm_source=instagram&utm_medium=social
+    (function() {
+      const p = new URLSearchParams(window.location.search);
+      const map = { ref: 'field_ref', utm_source: 'field_utm_source', utm_medium: 'field_utm_medium', utm_campaign: 'field_utm_campaign' };
+      Object.entries(map).forEach(([param, id]) => {
+        const val = p.get(param);
+        const el = document.getElementById(id);
+        if (val && el) el.value = val;
+      });
+    })();
+
+    // Scroll fade-in
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -36px 0px' });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Nav scroll
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', scrollY > 20); }, { passive: true });
+
+    // Phone formatter
+    document.getElementById('phone').addEventListener('input', e => {
+      let v = e.target.value.replace(/\D/g,'').slice(0,10);
+      if (v.length >= 7) v = `(${v.slice(0,3)}) ${v.slice(3,6)}-${v.slice(6)}`;
+      else if (v.length >= 4) v = `(${v.slice(0,3)}) ${v.slice(3)}`;
+      else if (v.length > 0) v = `(${v}`;
+      e.target.value = v;
+    });
+
+    // Form validation & submit
+    const form = document.getElementById('applyForm');
+    const successMsg = document.getElementById('successMsg');
+    const submitBtn = document.getElementById('submitBtn');
+    const WEBHOOK_URL = 'https://meetzair-agent-production.up.railway.app/webhook';
+
+    function showError(id, show) {
+      const f = document.getElementById(id);
+      const e = document.getElementById('err-' + id);
+      if (f) f.classList.toggle('error', show);
+      if (e) e.classList.toggle('visible', show);
+    }
+
+    function validate() {
+      let ok = true;
+      const fn = document.getElementById('firstName').value.trim();
+      showError('firstName', !fn); if (!fn) ok = false;
+      const ln = document.getElementById('lastName').value.trim();
+      showError('lastName', !ln); if (!ln) ok = false;
+      const em = document.getElementById('email').value.trim();
+      const emOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em);
+      showError('email', !emOk); if (!emOk) ok = false;
+      const ph = document.getElementById('phone').value.replace(/\D/g,'');
+      showError('phone', ph.length < 10); if (ph.length < 10) ok = false;
+      const lic = document.getElementById('licensed').value;
+      showError('licensed', !lic); if (!lic) ok = false;
+      const sms = document.getElementById('smsConsent').checked;
+      showError('smsConsent', !sms); if (!sms) ok = false;
+      return ok;
+    }
+
+    ['firstName','lastName','email','phone','licensed'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) { el.addEventListener('input', () => showError(id, false)); el.addEventListener('change', () => showError(id, false)); }
+    });
+    document.getElementById('smsConsent').addEventListener('change', () => showError('smsConsent', false));
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!validate()) return;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting…';
+      const payload = {
+        source:       'BTT-JoinBTT-Funnel',
+        type:         'application',
+        smsConsent:   true,
+        ref_agent:    document.getElementById('field_ref').value || 'Winsome',
+        utm_source:   document.getElementById('field_utm_source').value || '',
+        utm_medium:   document.getElementById('field_utm_medium').value || '',
+        utm_campaign: document.getElementById('field_utm_campaign').value || '',
+        firstName:    document.getElementById('firstName').value.trim(),
+        lastName:     document.getElementById('lastName').value.trim(),
+        email:        document.getElementById('email').value.trim(),
+        phone:        document.getElementById('phone').value.replace(/\D/g,''),
+        licensed:     document.getElementById('licensed').value,
+        availability: document.getElementById('availability').value,
+        referral:     document.getElementById('referral').value.trim(),
+        message:      document.getElementById('message').value.trim(),
+        submittedAt:  new Date().toISOString()
+      };
+      try {
+        await fetch(WEBHOOK_URL, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+      } catch (_) { /* silent — still show success */ }
+      form.style.display = 'none';
+      successMsg.classList.add('visible');
+    });
+  </script>
+
+</body>
+</html>
