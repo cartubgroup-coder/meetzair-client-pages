@@ -238,6 +238,17 @@
       max-width: 780px;
     }
 
+    @keyframes glowFloat {
+      0%   { text-shadow: 0 0 8px rgba(212,168,83,0.4); transform: translateY(0); }
+      50%  { text-shadow: 0 0 20px rgba(212,168,83,0.85), 0 0 40px rgba(212,168,83,0.35); transform: translateY(-3px); }
+      100% { text-shadow: 0 0 8px rgba(212,168,83,0.4); transform: translateY(0); }
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-16px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
     .hero-eyebrow {
       display: inline-flex;
       align-items: center;
@@ -248,6 +259,7 @@
       text-transform: uppercase;
       color: var(--gold);
       margin-bottom: 24px;
+      animation: slideIn 0.7s ease 0.2s both, glowFloat 3.4s ease-in-out 1s infinite;
     }
 
     .hero-eyebrow::before {
@@ -912,6 +924,49 @@
       margin-top: 12px;
     }
 
+    /* Intake Timer */
+    .intake-timer {
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      background: rgba(212,168,83,0.07); border: 1px solid rgba(212,168,83,0.2);
+      border-radius: 12px; padding: 20px 28px; margin: 0 auto 48px;
+      max-width: 640px; text-align: center;
+    }
+    .intake-timer.closed { background: rgba(239,68,68,0.07); border-color: rgba(239,68,68,0.25); }
+    .timer-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); }
+    .intake-timer.closed .timer-label { color: #ef4444; }
+    .timer-digits { display: flex; align-items: center; gap: 8px; font-family: 'Playfair Display', serif; font-size: clamp(1.4rem, 3.5vw, 2rem); font-weight: 700; color: var(--text-primary); }
+    .timer-unit { display: flex; flex-direction: column; align-items: center; min-width: 44px; }
+    .timer-unit small { font-family: 'Inter', sans-serif; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-top: 2px; }
+    .timer-sep { color: var(--gold); font-size: 1.4rem; margin-bottom: 14px; }
+    .timer-note-text { font-size: 0.75rem; color: var(--text-muted); }
+
+    /* Reviews Slider */
+    .reviews-section { padding: 60px 0 0; }
+    .reviews-section .section-label { display: block; text-align: center; margin-bottom: 14px; }
+    .reviews-section h2 { text-align: center; margin-bottom: 36px; }
+    .reviews-track-wrapper {
+      overflow: hidden;
+      mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    }
+    .reviews-track {
+      display: flex; gap: 20px; width: max-content;
+      animation: scrollReviews 36s linear infinite;
+    }
+    .reviews-track:hover { animation-play-state: paused; }
+    @keyframes scrollReviews {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .review-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px;
+      padding: 24px 28px; width: 300px; flex-shrink: 0;
+    }
+    .review-stars { color: var(--gold); font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 12px; }
+    .review-text { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 16px; }
+    .review-author { font-size: 0.78rem; font-weight: 600; color: var(--gold); }
+    .review-role { font-size: 0.72rem; color: var(--text-muted); margin-top: 2px; }
+
     /* Success state */
     .success-msg {
       display: none;
@@ -1078,8 +1133,8 @@
   <!-- ─── NAV ────────────────────────────────────────────────────────────── -->
   <nav class="nav" id="mainNav">
     <a href="https://joinbtt.com" class="nav-logo">
-      <!-- Swap in real logo: <img src="btt-logo.svg" class="nav-logo-img" alt="BTT" /> -->
-      <div class="nav-logo-badge">BTT</div>
+      <img src="../btt-logo.svg" style="height:38px;width:auto;display:block;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="BTT" />
+      <div class="nav-logo-badge" style="display:none;">BTT</div>
       <div>
         <span class="nav-logo-name">Building Transformation Team</span>
         <span class="nav-logo-sub">JoinBTT.com</span>
@@ -1106,17 +1161,17 @@
   <section class="hero">
     <div class="container">
       <div class="hero-inner">
-        <div class="hero-eyebrow fade-in">Winsome Invited You — Limited Spots Available · Life Insurance Business Opportunity</div>
+        <div class="hero-eyebrow">Someone Spoke Highly of You — Limited Spots Available · Life Insurance Business Opportunity</div>
         <h1 class="fade-in fade-delay-1">
           Build Something Real.<br />
           Help Families.<br />
           Own <span class="gold">Your Future.</span>
         </h1>
         <p class="hero-desc fade-in fade-delay-2">
-          Winsome is part of Building Transformation Team — and they personally sent you here. BTT is not a job. It's a business opportunity backed by a proven system, an AI-powered platform, and a team that field-trains you all the way until you're ready to move on your own. Start part-time. Grow at your pace.
+          Winsome reached out because they saw something in you. BTT is not a job — it's a business opportunity backed by a proven system, an AI-powered platform, and a team that field-trains you all the way until you're ready to move on your own. Start part-time. Grow at your pace.
         </p>
         <p class="hero-desc fade-in fade-delay-2" style="font-size:0.9rem;color:var(--gold);margin-top:-8px;">
-          We only bring on a select number of new business partners each month. Spots fill at each BOM.
+          We're selective. Not everyone gets an invitation — but Winsome liked what they saw.
         </p>
         <div class="hero-cta fade-in fade-delay-3">
           <a href="#apply" class="btn-primary">Claim Your Spot →</a>
@@ -1136,8 +1191,8 @@
             <div class="hero-stat-label">Friendly — Your Pace</div>
           </div>
           <div class="hero-stat">
-            <div class="hero-stat-number"><span class="gold">2</span>×</div>
-            <div class="hero-stat-label">BOM Weekly — Tue &amp; Sat</div>
+            <div class="hero-stat-number"><span class="gold">Day</span> 1</div>
+            <div class="hero-stat-label">Field Training — We Go With You</div>
           </div>
         </div>
       </div>
@@ -1231,7 +1286,7 @@
           <div class="step-number">1</div>
           <div class="step-title">Apply &amp; Attend a BOM</div>
           <p class="step-desc">
-            Fill out the form and a Marketing Director contacts you within 24 hours. If there's a fit, you'll receive a personal invite to our next Business Opportunity Meeting (BOM) — held every <strong>Tuesday at 7PM</strong> and <strong>Saturday at 10AM</strong> at our Pompano Beach office. This is a one-time invite. Come see what we do, ask every question you have, and decide if this is right for you. We don't pressure anyone twice.
+            Fill out the form and a Marketing Director contacts you within 24 hours. If there's a fit, you'll receive a personal invite to our next Business Opportunity Meeting (BOM) at our Pompano Beach office. This is a one-time invite. Come see what we do, ask every question you have, and decide if this is right for you. We don't pressure anyone twice.
           </p>
         </div>
         <div class="step fade-in fade-delay-2">
@@ -1311,15 +1366,57 @@
         <div class="trust-item"><span class="dot">◆</span> Part-Time or Full-Time</div>
         <div class="trust-item"><span class="dot">◆</span> Field Training Included</div>
         <div class="trust-item"><span class="dot">◆</span> No Income Cap</div>
-        <div class="trust-item"><span class="dot">◆</span> BOM Every Tue &amp; Sat</div>
+        <div class="trust-item"><span class="dot">◆</span> By Personal Invite Only</div>
         <div class="trust-item"><span class="dot">◆</span> Limited Intake — Reserve Your Spot</div>
       </div>
     </div>
   </div>
 
+  <!-- ─── REVIEWS SLIDER ───────────────────────────────────────────────── -->
+  <section class="section reviews-section">
+    <div class="container">
+      <div class="section-label">What People Are Saying</div>
+      <h2 class="section-title">Real people. <span class="gold">Real results.</span></h2>
+    </div>
+    <div class="reviews-track-wrapper">
+      <div class="reviews-track">
+        <!-- Set 1 -->
+        <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"I was skeptical at first — I'd never done anything in insurance. Six months in and I've replaced my part-time income. The training here is real."</p><div class="review-author">Marcus T.</div><div class="review-role">Licensed Agent, 8 months in</div></div>
+        <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"They went to my first three appointments with me. That field training piece is not a gimmick — they actually show up and coach you in real time."</p><div class="review-author">Denise R.</div><div class="review-role">Former retail manager, now full-time</div></div>
+        <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"My friend kept telling me to look into this. I was doing it as a side hustle — now my commissions beat my old salary. Wish I had done it sooner."</p><div class="review-author">Jayla M.</div><div class="review-role">South Florida Agent</div></div>
+        <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"The AI follow-up system alone saves me 5+ hours a week. Leads come in, get nurtured automatically, and I close them. It's a real business setup."</p><div class="review-author">Chris O.</div><div class="review-role">Agent, promoted to Team Lead</div></div>
+        <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"No experience. No license. Didn't matter. They walked me through every step — study materials, test prep, first clients. Completely hands-on."</p><div class="review-author">Alicia W.</div><div class="review-role">New agent, 4 months in</div></div>
+        <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"I attended the BOM just to see. By the end of it I was already asking where to sign. The culture, the leadership, the vision — it clicked immediately."</p><div class="review-author">Terrence B.</div><div class="review-role">Now managing his own team</div></div>
+        <!-- Set 2 (duplicate for infinite scroll) -->
+        <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"I was skeptical at first — I'd never done anything in insurance. Six months in and I've replaced my part-time income. The training here is real."</p><div class="review-author">Marcus T.</div><div class="review-role">Licensed Agent, 8 months in</div></div>
+        <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"They went to my first three appointments with me. That field training piece is not a gimmick — they actually show up and coach you in real time."</p><div class="review-author">Denise R.</div><div class="review-role">Former retail manager, now full-time</div></div>
+        <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"My friend kept telling me to look into this. I was doing it as a side hustle — now my commissions beat my old salary. Wish I had done it sooner."</p><div class="review-author">Jayla M.</div><div class="review-role">South Florida Agent</div></div>
+        <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"The AI follow-up system alone saves me 5+ hours a week. Leads come in, get nurtured automatically, and I close them. It's a real business setup."</p><div class="review-author">Chris O.</div><div class="review-role">Agent, promoted to Team Lead</div></div>
+        <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"No experience. No license. Didn't matter. They walked me through every step — study materials, test prep, first clients. Completely hands-on."</p><div class="review-author">Alicia W.</div><div class="review-role">New agent, 4 months in</div></div>
+        <div class="review-card"><div class="review-stars">★★★★★</div><p class="review-text">"I attended the BOM just to see. By the end of it I was already asking where to sign. The culture, the leadership, the vision — it clicked immediately."</p><div class="review-author">Terrence B.</div><div class="review-role">Now managing his own team</div></div>
+      </div>
+    </div>
+  </section>
+
   <!-- ─── APPLICATION FORM ──────────────────────────────────────────────── -->
   <section class="section form-section" id="apply">
     <div class="container">
+
+      <!-- Intake Timer -->
+      <div class="intake-timer" id="intakeTimer">
+        <div class="timer-label" id="timerLabel">This intake cycle closes in</div>
+        <div class="timer-digits">
+          <div class="timer-unit"><span id="tDays">--</span><small>Days</small></div>
+          <div class="timer-sep">:</div>
+          <div class="timer-unit"><span id="tHours">--</span><small>Hrs</small></div>
+          <div class="timer-sep">:</div>
+          <div class="timer-unit"><span id="tMins">--</span><small>Min</small></div>
+          <div class="timer-sep">:</div>
+          <div class="timer-unit"><span id="tSecs">--</span><small>Sec</small></div>
+        </div>
+        <div class="timer-note-text" id="timerNote">Limited spots per cycle. Applications reviewed in order received.</div>
+      </div>
+
       <div class="form-wrapper">
 
         <!-- Sidebar -->
@@ -1327,7 +1424,7 @@
           <div class="section-label">Reserve Your Spot</div>
           <h2 class="section-title">Your spot at the next <span class="gold">BOM is waiting.</span></h2>
           <p class="section-subtitle">
-            A Marketing Director reviews every application personally. If there's a fit, you'll get a direct invite to our next Tuesday or Saturday BOM. Spots are limited — we can only train so many new partners per cycle.
+            A Marketing Director reviews every application personally. If there's a fit, you'll get a direct, personal invite to our next BOM. Spots are limited — we can only bring on so many new partners per cycle.
           </p>
 
           <div class="sidebar-items">
@@ -1378,7 +1475,7 @@
           <div class="success-msg" id="successMsg">
             <span class="success-msg-icon">✅</span>
             <h3>You're on the Reserve List!</h3>
-            <p>A Marketing Director will reach out within 24 hours with your personal BOM invite — <strong>Tuesday at 7PM</strong> or <strong>Saturday at 10AM</strong>.<br />Check your phone — spots are limited and we review personally.</p>
+            <p>A Marketing Director will reach out within 24 hours with your personal BOM invite. Check your phone — spots are limited and every application is reviewed personally.</p>
           </div>
 
           <!-- Form -->
@@ -1464,7 +1561,7 @@
             </div>
 
             <button type="submit" class="btn-submit" id="submitBtn">
-              Submit Application →
+              Request Your Invite →
             </button>
             <p class="form-note">A Marketing Director will reach out within 24 hours.</p>
           </form>
@@ -1625,11 +1722,85 @@
     });
     document.getElementById('smsConsent').addEventListener('change', () => showError('smsConsent', false));
 
+    // ── Intake Countdown Timer ──────────────────────────────────────────────
+    (function initTimer() {
+      const EDT_OFFSET_MS = 4 * 60 * 60 * 1000;
+      const BOM_SCHEDULE = [
+        { day: 2, hour: 19, min: 0 },
+        { day: 6, hour: 10, min: 0 },
+      ];
+      const CLOSE_BEFORE_MS = 24 * 60 * 60 * 1000;
+      const timerEl = document.getElementById('intakeTimer');
+      const labelEl = document.getElementById('timerLabel');
+      const noteEl  = document.getElementById('timerNote');
+      const dEl = document.getElementById('tDays');
+      const hEl = document.getElementById('tHours');
+      const mEl = document.getElementById('tMins');
+      const sEl = document.getElementById('tSecs');
+      if (!timerEl) return;
+      function pad(n) { return String(n).padStart(2, '0'); }
+      function nextOccurrence(schedule) {
+        const nowUTC = Date.now();
+        const nowET  = nowUTC - EDT_OFFSET_MS;
+        const etDate = new Date(nowET);
+        const curDay = etDate.getUTCDay();
+        const curH   = etDate.getUTCHours();
+        const curM   = etDate.getUTCMinutes();
+        let daysAhead = (schedule.day - curDay + 7) % 7;
+        if (daysAhead === 0) {
+          const pastToday = (curH > schedule.hour) || (curH === schedule.hour && curM >= schedule.min);
+          if (pastToday) daysAhead = 7;
+        }
+        const eventET = new Date(nowET);
+        eventET.setUTCDate(eventET.getUTCDate() + daysAhead);
+        eventET.setUTCHours(schedule.hour, schedule.min, 0, 0);
+        return new Date(eventET.getTime() + EDT_OFFSET_MS);
+      }
+      function getDeadline() {
+        const deadlines = BOM_SCHEDULE.map(s => {
+          const evt = nextOccurrence(s);
+          return new Date(evt.getTime() - CLOSE_BEFORE_MS);
+        });
+        deadlines.sort((a, b) => a - b);
+        const now = Date.now();
+        const future = deadlines.filter(d => d.getTime() > now);
+        if (future.length > 0) return future[0];
+        const evt = nextOccurrence(BOM_SCHEDULE[0]);
+        return new Date(evt.getTime() - CLOSE_BEFORE_MS);
+      }
+      function tick() {
+        const now = Date.now();
+        const deadline = getDeadline();
+        const diff = deadline.getTime() - now;
+        if (diff <= 0) {
+          timerEl.classList.add('closed');
+          labelEl.textContent = 'Applications closed for this cycle';
+          noteEl.textContent  = 'The next intake window opens after the current BOM.';
+          dEl.textContent = hEl.textContent = mEl.textContent = sEl.textContent = '00';
+          return;
+        }
+        timerEl.classList.remove('closed');
+        labelEl.textContent = 'This intake cycle closes in';
+        noteEl.textContent  = 'Limited spots per cycle. Applications reviewed in order received.';
+        const days  = Math.floor(diff / 86400000);
+        const hours = Math.floor((diff % 86400000) / 3600000);
+        const mins  = Math.floor((diff % 3600000)  / 60000);
+        const secs  = Math.floor((diff % 60000)    / 1000);
+        dEl.textContent = pad(days);
+        hEl.textContent = pad(hours);
+        mEl.textContent = pad(mins);
+        sEl.textContent = pad(secs);
+      }
+      tick();
+      setInterval(tick, 1000);
+    })();
+    // ── End Intake Timer ────────────────────────────────────────────────────
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (!validate()) return;
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Submitting…';
+      submitBtn.textContent = 'Requesting…';
       const payload = {
         source:       'BTT-JoinBTT-Funnel',
         type:         'application',

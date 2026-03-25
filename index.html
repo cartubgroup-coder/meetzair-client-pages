@@ -912,6 +912,145 @@
       margin-top: 12px;
     }
 
+    /* ─── EYEBROW GLOW + FLOAT ──────────────────────────────────────── */
+    @keyframes glowFloat {
+      0%, 100% {
+        text-shadow: 0 0 6px rgba(212,168,83,0.5), 0 0 14px rgba(212,168,83,0.2);
+        transform: translateY(0px);
+      }
+      50% {
+        text-shadow: 0 0 18px rgba(212,168,83,0.9), 0 0 36px rgba(212,168,83,0.4), 0 0 60px rgba(212,168,83,0.15);
+        transform: translateY(-4px);
+      }
+    }
+    @keyframes slideIn {
+      0% { opacity: 0; letter-spacing: 4px; transform: translateY(8px); }
+      100% { opacity: 1; letter-spacing: 3px; transform: translateY(0); }
+    }
+    .hero-eyebrow {
+      animation: slideIn 0.8s ease forwards, glowFloat 3.5s ease-in-out 0.8s infinite !important;
+    }
+
+    /* ─── INTAKE TIMER STRIP ─────────────────────────────────────────── */
+    .intake-timer {
+      background: rgba(212,168,83,0.08);
+      border: 1px solid rgba(212,168,83,0.25);
+      border-radius: 12px;
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+    .intake-timer.closed {
+      background: rgba(239,68,68,0.08);
+      border-color: rgba(239,68,68,0.3);
+    }
+    .timer-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+    .intake-timer.closed .timer-label { color: #ef4444; }
+    .timer-digits {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .timer-unit {
+      text-align: center;
+      min-width: 44px;
+    }
+    .timer-unit span {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 700;
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .timer-unit small {
+      font-size: 0.6rem;
+      letter-spacing: 1.5px;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      display: block;
+      margin-top: 2px;
+    }
+    .timer-sep {
+      font-size: 1.2rem;
+      color: var(--gold);
+      opacity: 0.5;
+      padding-bottom: 10px;
+    }
+    .timer-note-text {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      flex: 1;
+      min-width: 160px;
+    }
+
+    /* ─── REVIEWS SLIDER ─────────────────────────────────────────────── */
+    .reviews-section {
+      padding: 40px 0 0;
+      overflow: hidden;
+      background: transparent;
+    }
+    .reviews-section-label {
+      text-align: center;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+    .reviews-track-wrapper {
+      overflow: hidden;
+      mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    }
+    @keyframes scrollReviews {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .reviews-track {
+      display: flex;
+      gap: 20px;
+      animation: scrollReviews 30s linear infinite;
+      width: max-content;
+    }
+    .reviews-track:hover { animation-play-state: paused; }
+    .review-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 22px;
+      min-width: 280px;
+      max-width: 280px;
+    }
+    .review-stars { color: var(--gold); font-size: 0.85rem; margin-bottom: 8px; }
+    .review-text {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+    .review-author {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .review-role {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
     /* Success state */
     .success-msg {
       display: none;
@@ -1078,11 +1217,13 @@
   <!-- ─── NAV ────────────────────────────────────────────────────────────── -->
   <nav class="nav" id="mainNav">
     <a href="https://joinbtt.com" class="nav-logo">
-      <!-- Swap in real logo: <img src="btt-logo.svg" class="nav-logo-img" alt="BTT" /> -->
-      <div class="nav-logo-badge">BTT</div>
-      <div>
-        <span class="nav-logo-name">Building Transformation Team</span>
-        <span class="nav-logo-sub">JoinBTT.com</span>
+      <img src="btt-logo.svg" class="nav-logo-img" alt="BTT" style="height:38px;width:auto;display:block;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+      <div style="display:none;align-items:center;gap:10px;">
+        <div class="nav-logo-badge">BTT</div>
+        <div>
+          <span class="nav-logo-name">Building Transformation Team</span>
+          <span class="nav-logo-sub">JoinBTT.com</span>
+        </div>
       </div>
     </a>
     <div class="nav-right">
@@ -1136,13 +1277,32 @@
             <div class="hero-stat-label">Friendly — Your Pace</div>
           </div>
           <div class="hero-stat">
-            <div class="hero-stat-number"><span class="gold">2</span>×</div>
-            <div class="hero-stat-label">BOM Weekly — Tue &amp; Sat</div>
+            <div class="hero-stat-number"><span class="gold">Day</span> 1</div>
+            <div class="hero-stat-label">Field Training — We Go With You</div>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- ─── INTAKE TIMER ────────────────────────────────────────────────── -->
+  <div style="background:var(--bg-secondary);border-bottom:1px solid var(--border);">
+    <div class="container">
+      <div class="intake-timer" id="intakeTimer">
+        <div class="timer-label" id="timerLabel">This intake cycle closes in</div>
+        <div class="timer-digits">
+          <div class="timer-unit"><span id="tDays">--</span><small>Days</small></div>
+          <div class="timer-sep">:</div>
+          <div class="timer-unit"><span id="tHours">--</span><small>Hrs</small></div>
+          <div class="timer-sep">:</div>
+          <div class="timer-unit"><span id="tMins">--</span><small>Min</small></div>
+          <div class="timer-sep">:</div>
+          <div class="timer-unit"><span id="tSecs">--</span><small>Sec</small></div>
+        </div>
+        <div class="timer-note-text" id="timerNote">Limited spots per cycle. Applications reviewed in order received.</div>
+      </div>
+    </div>
+  </div>
 
   <!-- ─── VIDEO SECTION ────────────────────────────────────────────────── -->
   <section class="video-section" id="video">
@@ -1229,9 +1389,9 @@
       <div class="steps">
         <div class="step fade-in fade-delay-1">
           <div class="step-number">1</div>
-          <div class="step-title">Apply &amp; Attend a BOM</div>
+          <div class="step-title">Request Your Invite &amp; Attend a BOM</div>
           <p class="step-desc">
-            Fill out the form and a Marketing Director contacts you within 24 hours. If there's a fit, you'll receive a personal invite to our next Business Opportunity Meeting (BOM) — held every <strong>Tuesday at 7PM</strong> and <strong>Saturday at 10AM</strong> at our Pompano Beach office. This is a one-time invite. Come see what we do, ask every question you have, and decide if this is right for you. We don't pressure anyone twice.
+            Fill out the form and a Marketing Director contacts you personally within 24 hours. If there's a fit, you'll receive a private invite to our next Business Opportunity Meeting (BOM) — a one-time open house at our Pompano Beach office. Come see what we do, meet the team, ask every question you have, and decide if this is the right path for you. We don't pressure anyone twice.
           </p>
         </div>
         <div class="step fade-in fade-delay-2">
@@ -1311,13 +1471,96 @@
         <div class="trust-item"><span class="dot">◆</span> Part-Time or Full-Time</div>
         <div class="trust-item"><span class="dot">◆</span> Field Training Included</div>
         <div class="trust-item"><span class="dot">◆</span> No Income Cap</div>
-        <div class="trust-item"><span class="dot">◆</span> BOM Every Tue &amp; Sat</div>
+        <div class="trust-item"><span class="dot">◆</span> By Personal Invite Only</div>
         <div class="trust-item"><span class="dot">◆</span> Limited Intake — Reserve Your Spot</div>
       </div>
     </div>
   </div>
 
   <!-- ─── APPLICATION FORM ──────────────────────────────────────────────── -->
+  <!-- ─── REVIEWS SLIDER ───────────────────────────────────────────────── -->
+  <div class="reviews-section">
+    <div class="reviews-section-label">What People Are Saying</div>
+    <div class="reviews-track-wrapper">
+      <div class="reviews-track" id="reviewsTrack">
+        <!-- Set 1 -->
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"I had zero sales experience. Within 60 days of getting my license I was in the field helping real families and earning. The field training is what makes this different."</p>
+          <div class="review-author">Marcus T.</div>
+          <div class="review-role">BTT Agent — South Florida</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"I didn't know what to expect at the BOM. I walked in skeptical and walked out with a whole new vision for what my income could look like. I signed up the next week."</p>
+          <div class="review-author">Denise R.</div>
+          <div class="review-role">Licensed Agent — Broward County</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"The AI system follows up so I don't have to chase leads. It's like having an assistant that never sleeps. My pipeline stays warm even when I'm with a client."</p>
+          <div class="review-author">Jerome A.</div>
+          <div class="review-role">BTT Agent — 6 months in</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"I was working full-time when I started. Part-time first 3 months, then I made the move. Doubled what I was making at my old job by month 7."</p>
+          <div class="review-author">Keisha M.</div>
+          <div class="review-role">Full-Time Agent — Palm Beach</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"They actually go with you to appointments. I've been in sales before but I've never had this level of field support. It makes you confident fast."</p>
+          <div class="review-author">Tony L.</div>
+          <div class="review-role">BTT Agent — Pompano Beach</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"From the BOM to my first policy placed was about 5 weeks. The team is responsive and the licensing process was way simpler than I thought it would be."</p>
+          <div class="review-author">Camille F.</div>
+          <div class="review-role">New Agent — Dade County</div>
+        </div>
+        <!-- Set 2 (duplicate for infinite scroll) -->
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"I had zero sales experience. Within 60 days of getting my license I was in the field helping real families and earning. The field training is what makes this different."</p>
+          <div class="review-author">Marcus T.</div>
+          <div class="review-role">BTT Agent — South Florida</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"I didn't know what to expect at the BOM. I walked in skeptical and walked out with a whole new vision for what my income could look like. I signed up the next week."</p>
+          <div class="review-author">Denise R.</div>
+          <div class="review-role">Licensed Agent — Broward County</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"The AI system follows up so I don't have to chase leads. It's like having an assistant that never sleeps. My pipeline stays warm even when I'm with a client."</p>
+          <div class="review-author">Jerome A.</div>
+          <div class="review-role">BTT Agent — 6 months in</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"I was working full-time when I started. Part-time first 3 months, then I made the move. Doubled what I was making at my old job by month 7."</p>
+          <div class="review-author">Keisha M.</div>
+          <div class="review-role">Full-Time Agent — Palm Beach</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"They actually go with you to appointments. I've been in sales before but I've never had this level of field support. It makes you confident fast."</p>
+          <div class="review-author">Tony L.</div>
+          <div class="review-role">BTT Agent — Pompano Beach</div>
+        </div>
+        <div class="review-card">
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">"From the BOM to my first policy placed was about 5 weeks. The team is responsive and the licensing process was way simpler than I thought it would be."</p>
+          <div class="review-author">Camille F.</div>
+          <div class="review-role">New Agent — Dade County</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <section class="section form-section" id="apply">
     <div class="container">
       <div class="form-wrapper">
@@ -1378,7 +1621,7 @@
           <div class="success-msg" id="successMsg">
             <span class="success-msg-icon">✅</span>
             <h3>You're on the Reserve List!</h3>
-            <p>A Marketing Director will reach out within 24 hours with your personal BOM invite — <strong>Tuesday at 7PM</strong> or <strong>Saturday at 10AM</strong>.<br />Check your phone — spots are limited and we review personally.</p>
+            <p>A Marketing Director will reach out within 24 hours with your personal BOM invite. Check your phone — spots are limited and every application is reviewed personally.</p>
           </div>
 
           <!-- Form -->
@@ -1459,7 +1702,7 @@
             </div>
 
             <button type="submit" class="btn-submit" id="submitBtn">
-              Submit Application →
+              Request Your Invite →
             </button>
             <p class="form-note">A Marketing Director will reach out within 24 hours.</p>
           </form>
@@ -1608,11 +1851,110 @@
     });
     document.getElementById('smsConsent').addEventListener('change', () => showError('smsConsent', false));
 
+    // ── Intake Countdown Timer ──────────────────────────────────────────────
+    // Internal BOM schedule: Tuesday 7PM ET (day 2) + Saturday 10AM ET (day 6)
+    // Application window CLOSES 24 hours before each event.
+    // All math in UTC; ET = UTC-4 (EDT) or UTC-5 (EST). Using fixed EDT (-4) offset.
+    (function initTimer() {
+      const EDT_OFFSET_MS = 4 * 60 * 60 * 1000; // ET is UTC-4 during EDT
+      const BOM_SCHEDULE = [
+        { day: 2, hour: 19, min: 0 }, // Tuesday 7:00 PM ET
+        { day: 6, hour: 10, min: 0 }, // Saturday 10:00 AM ET
+      ];
+      const CLOSE_BEFORE_MS = 24 * 60 * 60 * 1000; // close 24 hrs before event
+
+      const timerEl    = document.getElementById('intakeTimer');
+      const labelEl    = document.getElementById('timerLabel');
+      const noteEl     = document.getElementById('timerNote');
+      const dEl        = document.getElementById('tDays');
+      const hEl        = document.getElementById('tHours');
+      const mEl        = document.getElementById('tMins');
+      const sEl        = document.getElementById('tSecs');
+
+      if (!timerEl) return;
+
+      function pad(n) { return String(n).padStart(2, '0'); }
+
+      // Returns the next Date (UTC) for a given { day, hour, min } in ET
+      function nextOccurrence(schedule) {
+        const nowUTC = Date.now();
+        const nowET  = nowUTC - EDT_OFFSET_MS; // "ET epoch ms"
+        const etDate = new Date(nowET);
+        const curDay = etDate.getUTCDay();
+        const curH   = etDate.getUTCHours();
+        const curM   = etDate.getUTCMinutes();
+
+        let daysAhead = (schedule.day - curDay + 7) % 7;
+
+        // If same day, check if the time has already passed
+        if (daysAhead === 0) {
+          const pastToday = (curH > schedule.hour) ||
+                            (curH === schedule.hour && curM >= schedule.min);
+          if (pastToday) daysAhead = 7;
+        }
+
+        // Build that event moment in ET epoch ms, then convert to real UTC
+        const eventET = new Date(nowET);
+        eventET.setUTCDate(eventET.getUTCDate() + daysAhead);
+        eventET.setUTCHours(schedule.hour, schedule.min, 0, 0);
+        return new Date(eventET.getTime() + EDT_OFFSET_MS); // back to real UTC
+      }
+
+      function getDeadline() {
+        // Find the soonest upcoming event deadline (event - 24 hrs)
+        const deadlines = BOM_SCHEDULE.map(s => {
+          const evt = nextOccurrence(s);
+          return new Date(evt.getTime() - CLOSE_BEFORE_MS);
+        });
+        // Sort ascending and pick the nearest future deadline
+        deadlines.sort((a, b) => a - b);
+        const now = Date.now();
+        const future = deadlines.filter(d => d.getTime() > now);
+        if (future.length > 0) return future[0];
+        // All deadlines passed this week — take next cycle of first schedule
+        const evt = nextOccurrence(BOM_SCHEDULE[0]);
+        return new Date(evt.getTime() - CLOSE_BEFORE_MS);
+      }
+
+      function tick() {
+        const now      = Date.now();
+        const deadline = getDeadline();
+        const diff     = deadline.getTime() - now;
+
+        if (diff <= 0) {
+          // We are in the closed window (within 24hrs of event)
+          timerEl.classList.add('closed');
+          labelEl.textContent = 'Applications closed for this cycle';
+          noteEl.textContent  = 'The next intake window opens after the current BOM.';
+          dEl.textContent = hEl.textContent = mEl.textContent = sEl.textContent = '00';
+          return;
+        }
+
+        timerEl.classList.remove('closed');
+        labelEl.textContent = 'This intake cycle closes in';
+        noteEl.textContent  = 'Limited spots per cycle. Applications reviewed in order received.';
+
+        const days  = Math.floor(diff / 86400000);
+        const hours = Math.floor((diff % 86400000) / 3600000);
+        const mins  = Math.floor((diff % 3600000)  / 60000);
+        const secs  = Math.floor((diff % 60000)    / 1000);
+
+        dEl.textContent = pad(days);
+        hEl.textContent = pad(hours);
+        mEl.textContent = pad(mins);
+        sEl.textContent = pad(secs);
+      }
+
+      tick();
+      setInterval(tick, 1000);
+    })();
+    // ── End Intake Timer ────────────────────────────────────────────────────
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (!validate()) return;
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Submitting…';
+      submitBtn.textContent = 'Requesting…';
       const payload = {
         source: 'BTT-JoinBTT-Funnel',
         type: 'application',
