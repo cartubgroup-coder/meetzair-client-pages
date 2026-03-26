@@ -18,6 +18,9 @@
       --bg-secondary:  #111428;
       --bg-card:       #161b35;
       --bg-card-hover: #1c2240;
+      --green:         #1e6b38;
+      --green-light:   #26874a;
+      --green-dim:     rgba(30,107,56,0.18);
       --gold:          #d4a853;
       --gold-light:    #e8c47a;
       --gold-dim:      rgba(212,168,83,0.2);
@@ -188,8 +191,8 @@
 
     .btn-nav {
       padding: 9px 20px;
-      background: var(--gold);
-      color: #0c1024;
+      background: var(--green);
+      color: #ffffff;
       font-size: 0.85rem;
       font-weight: 700;
       border-radius: 6px;
@@ -199,7 +202,7 @@
     }
 
     .btn-nav:hover {
-      background: var(--gold-light);
+      background: var(--green-light);
       transform: translateY(-1px);
     }
 
@@ -301,20 +304,20 @@
       align-items: center;
       gap: 8px;
       padding: 15px 32px;
-      background: var(--gold);
-      color: #0c1024;
+      background: var(--green);
+      color: #ffffff;
       font-size: 0.95rem;
       font-weight: 700;
       border-radius: 8px;
       text-decoration: none;
       transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
-      box-shadow: 0 4px 20px rgba(212,168,83,0.3);
+      box-shadow: 0 4px 20px rgba(30,107,56,0.4);
     }
 
     .btn-primary:hover {
-      background: var(--gold-light);
+      background: var(--green-light);
       transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(212,168,83,0.45);
+      box-shadow: 0 8px 28px rgba(30,107,56,0.55);
     }
 
     .btn-secondary {
@@ -897,8 +900,8 @@
     .btn-submit {
       width: 100%;
       padding: 15px 24px;
-      background: var(--gold);
-      color: #0c1024;
+      background: var(--green);
+      color: #ffffff;
       font-size: 1rem;
       font-weight: 700;
       border: none;
@@ -906,13 +909,13 @@
       cursor: pointer;
       transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
       font-family: 'Inter', sans-serif;
-      box-shadow: 0 4px 20px rgba(212,168,83,0.25);
+      box-shadow: 0 4px 20px rgba(30,107,56,0.35);
     }
 
     .btn-submit:hover:not(:disabled) {
-      background: var(--gold-light);
+      background: var(--green-light);
       transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(212,168,83,0.4);
+      box-shadow: 0 8px 28px rgba(30,107,56,0.5);
     }
 
     .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
@@ -939,6 +942,160 @@
     .timer-unit small { font-family: 'Inter', sans-serif; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-top: 2px; }
     .timer-sep { color: var(--gold); font-size: 1.4rem; margin-bottom: 14px; }
     .timer-note-text { font-size: 0.75rem; color: var(--text-muted); }
+
+    /* ─── MEET THE FOUNDER ────────────────────────────────────────────── */
+    .founder-section {
+      padding: 80px 0;
+      background: linear-gradient(135deg, #0e1530 0%, #111b3a 100%);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .founder-inner {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    @media (max-width: 820px) {
+      .founder-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+    .founder-photo-wrap {
+      position: relative;
+    }
+    .founder-photo {
+      width: 100%;
+      aspect-ratio: 4/5;
+      border-radius: 18px;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      border: 3px solid rgba(30,107,56,0.5);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .founder-photo-placeholder {
+      width: 100%;
+      aspect-ratio: 4/5;
+      border-radius: 18px;
+      background: linear-gradient(160deg, #1a2245 0%, #111b3a 100%);
+      border: 3px solid rgba(30,107,56,0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+    .founder-photo-placeholder span {
+      font-size: 3rem;
+    }
+    .founder-badge {
+      position: absolute;
+      bottom: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg,#1e6b38,#155530);
+      color: #ffffff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 100px;
+      white-space: nowrap;
+      box-shadow: 0 4px 14px rgba(30,107,56,0.5);
+    }
+    .founder-content {}
+    .founder-name {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 0 0 4px;
+      line-height: 1.2;
+    }
+    .founder-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--green-light);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .founder-story {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.85;
+      margin-bottom: 32px;
+    }
+    .founder-story p { margin-bottom: 16px; }
+    .founder-story p:last-child { margin-bottom: 0; }
+    .founder-optin {
+      background: rgba(30,107,56,0.1);
+      border: 1px solid rgba(30,107,56,0.3);
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 0;
+    }
+    .founder-optin-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+    .founder-optin-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+    .founder-optin-form {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .founder-optin-form input[type="email"] {
+      flex: 1;
+      min-width: 200px;
+      padding: 11px 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .founder-optin-form input[type="email"]::placeholder { color: var(--text-muted); }
+    .founder-optin-form input[type="email"]:focus { border-color: var(--green); }
+    .btn-optin {
+      padding: 11px 22px;
+      background: var(--green);
+      color: #ffffff;
+      font-size: 0.88rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+    .btn-optin:hover { background: var(--green-light); transform: translateY(-1px); }
+    .btn-optin:disabled { opacity: 0.6; cursor: not-allowed; }
+    .founder-optin-success {
+      display: none;
+      font-size: 0.9rem;
+      color: var(--success);
+      font-weight: 600;
+      padding: 10px 0 0;
+    }
+    .founder-optin-success.visible { display: block; }
 
     /* Reviews Slider */
     .reviews-section { padding: 60px 0 0; }
@@ -1132,12 +1289,13 @@
 
   <!-- ─── NAV ────────────────────────────────────────────────────────────── -->
   <nav class="nav" id="mainNav">
-    <a href="https://joinbtt.com" class="nav-logo">
-      <img src="../btt-logo.svg" style="height:38px;width:auto;display:block;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" alt="BTT" />
-      <div class="nav-logo-badge" style="display:none;">BTT</div>
+    <a href="https://joinbtt.com" class="nav-logo" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+      <div style="width:40px;height:40px;border-radius:9px;background:linear-gradient(135deg,#1e6b38,#155530);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 0 12px rgba(30,107,56,0.5);">
+        <img src="../btt-logo.svg" style="width:32px;height:32px;object-fit:contain;" alt="BTT" onerror="this.outerHTML='<span style=\'font-family:Georgia,serif;font-size:11px;font-weight:900;color:white;letter-spacing:-0.5px;\'>BTT</span>';" />
+      </div>
       <div>
         <span class="nav-logo-name">Building Transformation Team</span>
-        <span class="nav-logo-sub">JoinBTT.com</span>
+        <span class="nav-logo-sub">via Winsome · JoinBTT.com</span>
       </div>
     </a>
     <div class="nav-right">
@@ -1398,6 +1556,72 @@
     </div>
   </section>
 
+  <!-- ─── MEET THE FOUNDER ─────────────────────────────────────────────── -->
+  <section class="founder-section" id="founder">
+    <div class="container">
+      <div class="founder-inner">
+
+        <!-- Photo -->
+        <div class="founder-photo-wrap fade-in">
+          <!-- Replace winsome-photo.jpg with the exported JPG from the PDF in clients/winsome/ -->
+          <img
+            src="winsome-photo.jpg"
+            alt="Winsome Bailey-Green — BTT Founder"
+            class="founder-photo"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+          />
+          <div class="founder-photo-placeholder" style="display:none;">
+            <span>👤</span>
+            <div>Winsome Bailey-Green<br /><small>Photo coming soon</small></div>
+          </div>
+          <div class="founder-badge">BTT Founder &amp; Marketing Director</div>
+        </div>
+
+        <!-- Content -->
+        <div class="founder-content fade-in fade-delay-1">
+          <div class="section-label">Meet the Founder</div>
+          <h2 class="founder-name">Winsome Bailey-Green</h2>
+          <div class="founder-title">Founder · BTT Marketing Director</div>
+
+          <div class="founder-story">
+            <p>
+              Winsome didn't start in finance. She started where most of us do — working hard, building a life, and wondering if there was something more. What she found in the life insurance industry changed everything.
+            </p>
+            <p>
+              Today she leads Building Transformation Team from Pompano Beach, Florida, training agents across South Florida to protect families and build real, lasting income. She's built her business one person at a time — and that's how she builds her team.
+            </p>
+            <p>
+              "I don't recruit for numbers. I invest in people. If someone spoke highly of you to me, it's because I believe this is something you'd be great at."
+            </p>
+          </div>
+
+          <!-- Opt-In -->
+          <div class="founder-optin">
+            <div class="founder-optin-title">Watch Winsome's Story &amp; Training Series →</div>
+            <div class="founder-optin-desc">
+              Get the behind-the-scenes video series — how Winsome built her business, the moments that almost made her quit, and the exact training method she uses with every new agent.
+            </div>
+            <div class="founder-optin-form" id="founderOptinForm">
+              <input
+                type="email"
+                id="founderEmail"
+                placeholder="Enter your email to watch"
+                autocomplete="email"
+              />
+              <button type="button" class="btn-optin" id="founderOptinBtn" onclick="submitFounderOptin()">
+                Send Me the Series →
+              </button>
+            </div>
+            <div class="founder-optin-success" id="founderOptinSuccess">
+              ✅ You're in! Check your email — the first video is on its way.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ─── APPLICATION FORM ──────────────────────────────────────────────── -->
   <section class="section form-section" id="apply">
     <div class="container">
@@ -1602,6 +1826,7 @@
             <li><a href="#about">What BTT Is</a></li>
             <li><a href="#how-it-works">How It Works</a></li>
             <li><a href="#who">Who It's For</a></li>
+            <li><a href="#founder">Meet Winsome</a></li>
             <li><a href="#apply">Claim Your Spot</a></li>
           </ul>
         </div>
@@ -1795,6 +2020,35 @@
       setInterval(tick, 1000);
     })();
     // ── End Intake Timer ────────────────────────────────────────────────────
+
+    // ── Founder Opt-In ───────────────────────────────────────────────────────
+    async function submitFounderOptin() {
+      const emailEl = document.getElementById('founderEmail');
+      const btn     = document.getElementById('founderOptinBtn');
+      const success = document.getElementById('founderOptinSuccess');
+      const email   = emailEl.value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        emailEl.style.borderColor = 'var(--error)';
+        emailEl.focus();
+        return;
+      }
+      emailEl.style.borderColor = '';
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      const payload = {
+        source:      'BTT-FounderVideo',
+        email,
+        ref_agent:   document.getElementById('field_ref').value || 'Winsome',
+        utm_source:  document.getElementById('field_utm_source').value || '',
+        submittedAt: new Date().toISOString()
+      };
+      try {
+        await fetch(WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+      } catch (_) { /* silent */ }
+      document.getElementById('founderOptinForm').style.display = 'none';
+      success.classList.add('visible');
+    }
+    // ── End Founder Opt-In ──────────────────────────────────────────────────
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
