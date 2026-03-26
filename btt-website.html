@@ -629,16 +629,6 @@
     .newsletter-success { display: none; color: var(--gold); font-weight: 600; font-size: 1rem; margin-top: 16px; }
     .newsletter-note { font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 14px; }
 
-    /* ── Chat Widget Placeholder ────────────────────────────────── */
-    .chat-badge {
-      position: fixed; bottom: 24px; right: 24px; z-index: 999;
-      width: 56px; height: 56px; border-radius: 50%;
-      background: var(--green); color: var(--white);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem; box-shadow: 0 4px 20px rgba(30,107,56,0.5);
-      cursor: pointer; transition: transform 0.2s;
-    }
-    .chat-badge:hover { transform: scale(1.08); }
 
     /* ── Utilities ─────────────────────────────────────────────── */
     .gold { color: var(--gold); }
@@ -1145,11 +1135,26 @@
        Point the AI bot to your BTT FAQ, appointment flow, or recruiting pipeline.
   ─────────────────────────────────────────────────────────────────── -->
 
-  <!-- REPLACE THIS with your actual MeetZair chat widget embed code -->
-  <!-- <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="YOUR_WIDGET_ID"></script> -->
+  <!--
+  ══════════════════════════════════════════════════════════════════
+  CHAT WIDGET — PASTE YOUR EMBED CODE BELOW (replaces this comment)
+  ──────────────────────────────────────────────────────────────────
+  1. Log into your MeetZair account
+  2. Settings → Chat Widget → Create Widget
+  3. Enable AI Bot → connect to BTT FAQ / recruiting pipeline
+  4. Set brand color: #1e6b38 (BTT forest green)
+  5. Save → copy the <script> embed tag shown
+  6. Delete this entire comment and paste the embed code here
+  7. Push to GitHub → Vercel auto-deploys (30 sec)
 
-  <!-- Temporary visual placeholder until widget is configured -->
-  <div class="chat-badge" id="chatBadge" title="Chat with us" onclick="this.style.display='none';alert('Widget coming soon — check your MeetZair account to configure the AI chat widget.');">💬</div>
+  Example embed (your real widget-id will differ):
+  <script
+    src="https://widgets.leadconnectorhq.com/loader.js"
+    data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+    data-widget-id="PASTE_YOUR_WIDGET_ID_HERE"
+  ></script>
+  ══════════════════════════════════════════════════════════════════
+  -->
 
   <!-- ─── NEWSLETTER HANDLER ────────────────────────────────────── -->
   <script>
