@@ -1,0 +1,29 @@
+# Controlled vocabulary for content_tags.
+# Free-form tags are still allowed, but anything that maps to one of these
+# should be normalized to the canonical form by source_normalizer.
+
+projects:
+  - tradedonor
+  - 34resets
+  - meetzair
+  - silicabase
+
+topics:
+  macro: [fomc, rates, cpi, ppi, payrolls, gdp, inflation, recession, yield_curve]
+  markets: [equities, bonds, commodities, fx, crypto, options, volatility]
+  philanthropy: [donor_advised_fund, charity, giving, planned_giving]
+  semis: [fab, foundry, lithography, packaging, hbm, gpu, eda, materials]
+  habits: [reset, sleep, focus, productivity, recovery, dopamine]
+  founders: [seed, series_a, ipo, growth, churn, retention, networking]
+
+content_types:
+  - interview
+  - market_recap
+  - earnings_call
+  - press_release
+  - policy_statement
+  - filing
+  - explainer
+  - tutorial
+  - thread
+  - newsletter

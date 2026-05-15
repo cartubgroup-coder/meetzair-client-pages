@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FounderDash — Content Intelligence</title>
+  <meta name="description" content="FounderBrain Content Intelligence dashboard: daily market brief, intake queues, source watchlist, research library, and trading angle generator for TradeDonor, 34Resets, MeetZair, and SilicaBASE." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg-primary:    #0c1024;
+      --bg-secondary:  #111428;
+      --bg-card:       #161b35;
+      --bg-card-hover: #1c2240;
+      --green:         #1e6b38;
+      --green-light:   #26874a;
+      --gold:          #d4a853;
+      --gold-dim:      rgba(212,168,83,0.2);
+      --text-primary:  #eef0f8;
+      --text-secondary:#9aa3c2;
+      --text-muted:    #5d6585;
+      --border:        rgba(255,255,255,0.07);
+      --border-gold:   rgba(212,168,83,0.28);
+      --error:         #ef4444;
+      --warn:          #f59e0b;
+      --ok:            #10b981;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+    a { color: var(--gold-light, #e8c47a); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code, pre { font-family: 'JetBrains Mono', ui-monospace, Menlo, Monaco, monospace; font-size: 0.85em; }
+
+    .topbar {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(12,16,36,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .topbar-inner {
+      max-width: 1240px; margin: 0 auto; padding: 14px 24px;
+      display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    }
+    .brand {
+      font-weight: 800; letter-spacing: 0.02em; font-size: 1.05rem;
+    }
+    .brand span { color: var(--gold); }
+    .nav-pill {
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      padding: 5px 12px; border-radius: 100px;
+      background: var(--gold-dim); color: var(--gold);
+      border: 1px solid var(--border-gold);
+    }
+
+    .layout {
+      max-width: 1240px; margin: 0 auto; padding: 24px;
+      display: grid; gap: 20px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 1024px) {
+      .layout { grid-template-columns: 2fr 1fr; }
+      .full   { grid-column: 1 / -1; }
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .card h2 {
+      font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 12px;
+    }
+    .card h3 {
+      font-size: 1.05rem; margin: 6px 0 10px;
+    }
+    .card .muted { color: var(--text-muted); font-size: 0.85rem; }
+    .card .row {
+      display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+    }
+    .card .row:last-child { border-bottom: 0; }
+    .tag {
+      display: inline-block; font-size: 0.7rem; padding: 2px 8px;
+      border-radius: 100px; background: rgba(255,255,255,0.06);
+      color: var(--text-secondary); border: 1px solid var(--border);
+    }
+    .tag-tradedonor { background: rgba(30,107,56,0.18); color: #6ee2a0; border-color: rgba(110,226,160,0.25); }
+    .tag-34resets   { background: rgba(212,168,83,0.18); color: var(--gold); border-color: var(--border-gold); }
+    .tag-meetzair   { background: rgba(96,165,250,0.15); color: #93c5fd; border-color: rgba(147,197,253,0.25); }
+    .tag-silicabase { background: rgba(244,114,182,0.15); color: #f9a8d4; border-color: rgba(249,168,212,0.25); }
+    .health-healthy   { color: var(--ok); }
+    .health-degraded  { color: var(--warn); }
+    .health-unhealthy { color: var(--error); }
+
+    .btn {
+      cursor: pointer; padding: 9px 14px; border-radius: 8px;
+      border: 1px solid var(--border-gold); background: var(--gold-dim);
+      color: var(--gold); font-weight: 600; font-size: 0.85rem;
+    }
+    .btn:hover { background: rgba(212,168,83,0.32); }
+    input, textarea, select {
+      width: 100%; padding: 9px 11px;
+      background: var(--bg-secondary); color: var(--text-primary);
+      border: 1px solid var(--border); border-radius: 8px;
+      font-family: inherit; font-size: 0.92rem;
+    }
+    .input-row { display: flex; gap: 8px; }
+    .input-row input { flex: 1; }
+    .field { margin: 8px 0; }
+    .field label { display:block; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 4px; }
+
+    .empty-state {
+      padding: 14px; border: 1px dashed var(--border);
+      border-radius: 8px; color: var(--text-muted); font-size: 0.9rem;
+    }
+
+    pre.brief {
+      white-space: pre-wrap; word-break: break-word;
+      background: var(--bg-secondary); padding: 14px; border-radius: 8px;
+      border: 1px solid var(--border);
+      max-height: 60vh; overflow: auto;
+    }
+
+    .stat {
+      display: flex; gap: 16px; flex-wrap: wrap; font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+    .stat b { color: var(--text-primary); }
+
+    .footer {
+      max-width: 1240px; margin: 30px auto 60px; padding: 0 24px;
+      font-size: 0.78rem; color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">FounderDash · <span>Content Intelligence</span></div>
+      <span class="nav-pill" id="env-pill">demo mode</span>
+    </div>
+  </header>
+
+  <main class="layout">
+
+    <!-- DAILY MARKET BRIEF -->
+    <section class="card full">
+      <h2>Daily Market Brief</h2>
+      <div id="brief-meta" class="stat muted">Loading…</div>
+      <pre class="brief" id="brief-body">No brief loaded yet.</pre>
+    </section>
+
+    <!-- LEFT COLUMN -->
+
+    <section class="card">
+      <h2>Podcast Prep Queue</h2>
+      <div id="podcast-queue"><div class="empty-state">No items pinned for podcast prep.</div></div>
+    </section>
+
+    <section class="card">
+      <h2>Video Intake Queue</h2>
+      <div class="field">
+        <label>Paste a URL (YouTube, RSS, article, FRED, GDELT)</label>
+        <div class="input-row">
+          <input id="intake-url" placeholder="https://…" />
+          <button class="btn" id="intake-btn">Ingest</button>
+        </div>
+      </div>
+      <div id="intake-list"><div class="empty-state">No items yet.</div></div>
+    </section>
+
+    <section class="card">
+      <h2>Research Library</h2>
+      <div class="field">
+        <div class="input-row">
+          <input id="library-search" placeholder="Search by keyword, tag, source…" />
+          <button class="btn" id="library-search-btn">Search</button>
+        </div>
+      </div>
+      <div id="library-results"><div class="empty-state">Search to load results.</div></div>
+    </section>
+
+    <section class="card">
+      <h2>Clip Ideas</h2>
+      <div id="clip-ideas"><div class="empty-state">Clip ideas appear after transcripts are extracted.</div></div>
+    </section>
+
+    <!-- RIGHT COLUMN -->
+
+    <section class="card">
+      <h2>Trading Angle Generator</h2>
+      <div class="field">
+        <label>Topic</label>
+        <input id="angle-topic" placeholder="e.g. long-end rates, HBM supply" />
+      </div>
+      <button class="btn" id="angle-btn">Generate</button>
+      <pre class="brief" id="angle-body" style="margin-top: 12px; display:none;"></pre>
+    </section>
+
+    <section class="card">
+      <h2>Source Watchlist</h2>
+      <div id="watchlist"><div class="empty-state">No sources registered.</div></div>
+    </section>
+
+    <section class="card">
+      <h2>Founder Action Queue</h2>
+      <div id="action-queue"><div class="empty-state">Nothing waiting on you.</div></div>
+    </section>
+
+    <section class="card">
+      <h2>Source Health</h2>
+      <div id="source-health"><div class="empty-state">No health checks recorded yet.</div></div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    FounderBrain · Content Intelligence skill ·
+    <a href="https://github.com/cartubgroup-coder/meetzair-client-pages/blob/claude/content-intelligence-skill-9aguj/FounderBrain/03_Agent_Skills/Content_Intelligence/SKILL.md">SKILL.md</a> ·
+    <a href="https://github.com/cartubgroup-coder/meetzair-client-pages/blob/claude/content-intelligence-skill-9aguj/FounderBrain/03_Agent_Skills/Content_Intelligence/content-intake-runbook.md">runbook</a>
+  </footer>
+
+  <script>
+    // -------- Supabase config (read-only) --------
+    // The dashboard talks to Supabase using the anon key. Insert/Update/Delete is
+    // brokered through edge functions backed by the service role — never expose
+    // the service role key here.
+    const SUPABASE_URL = window.SUPABASE_URL || "";
+    const SUPABASE_ANON = window.SUPABASE_ANON || "";
+    const HAVE_BACKEND = !!(SUPABASE_URL && SUPABASE_ANON);
+
+    document.getElementById("env-pill").textContent = HAVE_BACKEND ? "live" : "demo mode";
+
+    // -------- Demo data (used when no backend is wired up) --------
+    const DEMO = {
+      brief: {
+        date: "today",
+        headline: "Demo brief — wire SUPABASE_URL and SUPABASE_ANON to see live data",
+        markdown:
+          "# FounderBrain Daily Brief — (demo)\n\n" +
+          "> This card is rendered without a backend connection.\n" +
+          "> The real brief is generated by `brief_generator` at 06:30 ET and\n" +
+          "> written to `content_briefs`. Open SKILL.md for details.\n\n" +
+          "## Five things that moved\n" +
+          "1. Fed minutes released; tone slightly less hawkish [1]\n" +
+          "2. SEC issues new compliance guidance for crypto custodians [2]\n" +
+          "3. GDELT flags spike in supply-chain coverage out of Taiwan [3]\n" +
+          "4. 10Y yield closed at 4.32% [4]\n" +
+          "5. Two trading-angle candidates from the watchlist [5]\n\n" +
+          "## Sources\n" +
+          "[1] FOMC minutes — federalreserve.gov\n" +
+          "[2] SEC press — sec.gov\n" +
+          "[3] GDELT macro feed — gdeltproject.org\n" +
+          "[4] FRED DGS10 — fred.stlouisfed.org\n" +
+          "[5] Watchlist items — see Research Library\n",
+        stats: { items_reviewed: 5, official: 3, trusted: 1, community: 1 },
+      },
+      intake: [
+        { title: "Jay Powell remarks at Brookings", source: "youtube", tags: ["tradedonor"], transcript: "extracted" },
+        { title: "Foundry capex update", source: "sec_rss", tags: ["silicabase"], transcript: "none" },
+      ],
+      watchlist: [
+        { name: "Federal Reserve — Press", platform: "fed", trust: "official", health: "healthy" },
+        { name: "SEC — Press Releases", platform: "sec", trust: "official", health: "healthy" },
+        { name: "GDELT — Macro", platform: "gdelt", trust: "trusted", health: "degraded" },
+      ],
+      health: [
+        { name: "Federal Reserve — Press", status: "healthy", at: "06:25 ET" },
+        { name: "SEC — 8-K", status: "healthy", at: "06:25 ET" },
+        { name: "GDELT — Macro", status: "degraded", at: "06:25 ET" },
+      ],
+      actions: [
+        { title: "Approve permission upgrade for <channel>", kind: "permission_review" },
+        { title: "Disagree with auto-tag: ‘semis’ → silicabase?", kind: "tagging_conflict" },
+      ],
+    };
+
+    function tagPill(t) {
+      const cls = ({
+        tradedonor: "tag-tradedonor",
+        "34resets":  "tag-34resets",
+        meetzair:   "tag-meetzair",
+        silicabase: "tag-silicabase",
+      })[t] || "";
+      return `<span class="tag ${cls}">${t}</span>`;
+    }
+
+    function renderBrief(b) {
+      const meta = document.getElementById("brief-meta");
+      const body = document.getElementById("brief-body");
+      const s = b.stats || {};
+      meta.innerHTML =
+        `<span>Items reviewed: <b>${s.items_reviewed ?? "—"}</b></span>` +
+        `<span>Official: <b>${s.official ?? "—"}</b></span>` +
+        `<span>Trusted: <b>${s.trusted ?? "—"}</b></span>` +
+        `<span>Community: <b>${s.community ?? "—"}</b></span>`;
+      body.textContent = b.markdown || "(no brief)";
+    }
+
+    function renderIntake(items) {
+      const el = document.getElementById("intake-list");
+      if (!items || !items.length) {
+        el.innerHTML = `<div class="empty-state">No items yet.</div>`;
+        return;
+      }
+      el.innerHTML = items.map(it => `
+        <div class="row">
+          <div style="flex:1; min-width:0;">
+            <h3>${it.title}</h3>
+            <div class="muted">${it.source} · transcript: ${it.transcript}</div>
+          </div>
+          <div>${(it.tags || []).map(tagPill).join(" ")}</div>
+        </div>
+      `).join("");
+    }
+
+    function renderWatchlist(list) {
+      const el = document.getElementById("watchlist");
+      if (!list || !list.length) { el.innerHTML = `<div class="empty-state">No sources registered.</div>`; return; }
+      el.innerHTML = list.map(s => `
+        <div class="row">
+          <div style="flex:1;">
+            <h3>${s.name}</h3>
+            <div class="muted">${s.platform} · ${s.trust}</div>
+          </div>
+          <span class="health-${s.health}">${s.health}</span>
+        </div>
+      `).join("");
+    }
+
+    function renderHealth(list) {
+      const el = document.getElementById("source-health");
+      if (!list || !list.length) return;
+      el.innerHTML = list.map(s => `
+        <div class="row">
+          <div style="flex:1;">${s.name}</div>
+          <span class="health-${s.status}">${s.status}</span>
+          <span class="muted">${s.at}</span>
+        </div>
+      `).join("");
+    }
+
+    function renderActions(list) {
+      const el = document.getElementById("action-queue");
+      if (!list || !list.length) return;
+      el.innerHTML = list.map(a => `
+        <div class="row">
+          <div style="flex:1;">${a.title}</div>
+          <span class="tag">${a.kind}</span>
+        </div>
+      `).join("");
+    }
+
+    async function fetchSupabase(table, opts = "select=*&order=created_at.desc&limit=20") {
+      const url = `${SUPABASE_URL}/rest/v1/${table}?${opts}`;
+      const resp = await fetch(url, {
+        headers: {
+          "apikey": SUPABASE_ANON,
+          "authorization": `Bearer ${SUPABASE_ANON}`,
+        },
+      });
+      if (!resp.ok) throw new Error(`${table} ${resp.status}`);
+      return resp.json();
+    }
+
+    async function bootstrap() {
+      if (!HAVE_BACKEND) {
+        renderBrief(DEMO.brief);
+        renderIntake(DEMO.intake);
+        renderWatchlist(DEMO.watchlist);
+        renderHealth(DEMO.health);
+        renderActions(DEMO.actions);
+        return;
+      }
+      try {
+        const briefs = await fetchSupabase(
+          "content_briefs",
+          "select=*&kind=eq.daily_market_brief&order=brief_date.desc&limit=1"
+        );
+        if (briefs[0]) {
+          const b = briefs[0];
+          renderBrief({
+            markdown: b.body_markdown,
+            stats: (b.body_json && b.body_json.stats) || {},
+          });
+        }
+        const items = await fetchSupabase(
+          "content_items",
+          "select=id,title,source_name,project_tags,transcript_status,dashboard_status&order=fetched_at.desc&limit=15"
+        );
+        renderIntake((items || []).map(it => ({
+          title: it.title,
+          source: it.source_name,
+          transcript: it.transcript_status,
+          tags: it.project_tags || [],
+        })));
+        const sources = await fetchSupabase(
+          "content_sources",
+          "select=source_name,platform,trust_tier,last_scanned_at&enabled=eq.true&order=source_name.asc&limit=50"
+        );
+        renderWatchlist((sources || []).map(s => ({
+          name: s.source_name, platform: s.platform, trust: s.trust_tier, health: "healthy",
+        })));
+        const health = await fetchSupabase(
+          "source_health_checks",
+          "select=status,checked_at,source_id&order=checked_at.desc&limit=20"
+        );
+        renderHealth((health || []).map(h => ({
+          name: h.source_id, status: h.status, at: new Date(h.checked_at).toLocaleTimeString(),
+        })));
+        const tasks = await fetchSupabase(
+          "content_tasks",
+          "select=title,kind&status=eq.awaiting_founder&order=created_at.desc&limit=10"
+        );
+        renderActions(tasks || []);
+      } catch (e) {
+        console.warn("dashboard fetch failed, falling back to demo:", e);
+        document.getElementById("env-pill").textContent = "live (degraded)";
+        renderBrief(DEMO.brief);
+        renderIntake(DEMO.intake);
+        renderWatchlist(DEMO.watchlist);
+        renderHealth(DEMO.health);
+        renderActions(DEMO.actions);
+      }
+    }
+
+    document.getElementById("intake-btn").addEventListener("click", () => {
+      const url = document.getElementById("intake-url").value.trim();
+      if (!url) return;
+      if (!HAVE_BACKEND) {
+        alert("Demo mode — wire SUPABASE_URL + SUPABASE_ANON to actually ingest.");
+        return;
+      }
+      // Real impl posts to a Supabase edge function 'ingest_url'.
+      fetch(`${SUPABASE_URL}/functions/v1/ingest_url`, {
+        method: "POST",
+        headers: {
+          "apikey": SUPABASE_ANON,
+          "authorization": `Bearer ${SUPABASE_ANON}`,
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ url }),
+      }).then(r => r.ok ? bootstrap() : alert("ingest failed"));
+    });
+
+    document.getElementById("angle-btn").addEventListener("click", async () => {
+      const topic = document.getElementById("angle-topic").value.trim();
+      const out = document.getElementById("angle-body");
+      out.style.display = "block";
+      out.textContent = "Working…";
+      if (!HAVE_BACKEND) {
+        out.textContent = "Demo mode — wire SUPABASE_URL + SUPABASE_ANON to call brief_generator.";
+        return;
+      }
+      try {
+        const r = await fetch(`${SUPABASE_URL}/functions/v1/generate_trading_angle`, {
+          method: "POST",
+          headers: {
+            "apikey": SUPABASE_ANON,
+            "authorization": `Bearer ${SUPABASE_ANON}`,
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({ topic }),
+        });
+        const data = await r.json();
+        out.textContent = data.body_markdown || JSON.stringify(data, null, 2);
+      } catch (e) {
+        out.textContent = "Error: " + e.message;
+      }
+    });
+
+    bootstrap();
+  </script>
+</body>
+</html>

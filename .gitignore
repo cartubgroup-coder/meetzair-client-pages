@@ -22,3 +22,14 @@ Thumbs.db
 # Logs
 *.log
 debug.log
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+
+# Keep .env.example tracked
+!**/.env.example
