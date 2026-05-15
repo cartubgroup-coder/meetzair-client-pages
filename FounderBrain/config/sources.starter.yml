@@ -1,0 +1,58 @@
+# Starter watchlist. Load via the dashboard or a one-off script.
+# Mirror of `source-registry-template.md` so changes can be diffed.
+
+- source_type: fed_rss
+  source_name: Federal Reserve — All Press Releases
+  source_url: https://www.federalreserve.gov/feeds/press_all.xml
+  platform: fed
+  trust_tier: official
+  permission_status: metadata_only
+  project_tags: [tradedonor]
+  auto_scan: true
+  scan_interval_minutes: 60
+  enabled: true
+
+- source_type: sec_rss
+  source_name: SEC — Press Releases
+  source_url: https://www.sec.gov/news/pressreleases.rss
+  platform: sec
+  trust_tier: official
+  permission_status: metadata_only
+  project_tags: [tradedonor]
+  auto_scan: true
+  scan_interval_minutes: 60
+  enabled: true
+
+- source_type: sec_rss
+  source_name: SEC — Latest 8-K Filings
+  source_url: https://www.sec.gov/cgi-bin/browse-edgar?action=getcurrent&type=8-K&output=atom
+  platform: sec
+  trust_tier: official
+  permission_status: metadata_only
+  project_tags: [tradedonor]
+  auto_scan: true
+  scan_interval_minutes: 60
+  enabled: true
+
+- source_type: fred_series
+  source_name: 10-Year Treasury Constant Maturity Rate
+  source_url: https://fred.stlouisfed.org/series/DGS10
+  source_external_id: DGS10
+  platform: fred
+  trust_tier: official
+  permission_status: metadata_only
+  project_tags: [tradedonor]
+  auto_scan: true
+  scan_interval_minutes: 360
+  enabled: true
+
+- source_type: gdelt_query
+  source_name: GDELT — Macro (monetary OR inflation OR FOMC)
+  source_url: (monetary OR inflation OR yield OR FOMC)
+  platform: gdelt
+  trust_tier: trusted
+  permission_status: metadata_only
+  project_tags: [tradedonor]
+  auto_scan: true
+  scan_interval_minutes: 180
+  enabled: true
